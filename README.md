@@ -9,7 +9,11 @@ Mobile-first static site + three tiny Vercel functions. No build step.
 - Music: the official YouTube songs in `youtubeSongs` (`config.js`) play by default as one shuffled
   playlist, starting when a guest taps the seal. They are listed in "Songs of Love" with the
   player (tap a song to play from it, or shuffle); the dock has play/pause and next
-- "How far are you?" distance to the venue (location never leaves the phone)
+- Photo gallery: a 3D coverflow in a new random order on every visit, with autoplay, a slow zoom, a glint on the
+  centred photo, dealt-card entrance and a Shuffle button
+- "How far are you?" distance to the venue and the guest's nearest city (for example "Valsad, Gujarat, India"),
+  both worked out on the phone. The exact location is never sent: only the rounded distance and the city name
+  go with the RSVP
 - RSVP form -> `/api/rsvp` (distance included, rounded)
 - SEO: meta + Open Graph, Event structured data, auto sitemap.xml and robots.txt
 
@@ -94,6 +98,15 @@ Reading the admin result:
 - RSVP files live in a private Blob store. `npm audit` reports 0 known vulnerabilities.
 - The in-code rate limits are per server instance. For a hard limit, add a rate-limit rule in
   Vercel -> Firewall (for example 10 requests/minute on `/api/rsvp`).
+
+## Where a guest is (city name)
+The guest's phone works out the nearest city itself, from the bundled list `assets/places.json`
+(loaded only after the guest allows location). It stops at city level on purpose: a street address would be
+a guest's home. The older approach, guessing from the internet address, is gone because it was often wrong
+(mobile networks route through other towns).
+- The list is from [GeoNames](https://www.geonames.org) (CC BY 4.0, credited in the footer): every city with
+  15,000+ people in India and 100,000+ elsewhere. Rebuild it with `python3 scripts/build-places.py`.
+- Guests more than 150 km from any listed city simply get no place name.
 
 ## Edit details
 Everything editable is in `config.js` (venue, coordinates, WhatsApp fallback, songs, photos).

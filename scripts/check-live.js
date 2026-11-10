@@ -26,6 +26,8 @@ const json = async (r) => { try { return await r.json(); } catch (e) { return {}
   check(html.includes(base + "/assets/og-image.png"), "share preview points at this domain", "og:image does not point at " + base + " (fine if you use a custom domain, update index.html)", true);
   const og = await req("/assets/og-image.png");
   check(og.status === 200 && /image\/png/.test(og.headers.get("content-type") || ""), "share-preview image loads", "og-image.png returned " + og.status);
+  const places = await req("/assets/places.json");
+  check(places.status === 200 && /json/.test(places.headers.get("content-type") || ""), "city list for the guest's place name loads", "assets/places.json returned " + places.status);
   const robots = await req("/robots.txt"), sitemap = await req("/sitemap.xml");
   check(robots.status === 200 && /Sitemap:/.test(await robots.text()), "robots.txt works", "robots.txt returned " + robots.status);
   check(sitemap.status === 200 && /<loc>/.test(await sitemap.text()), "sitemap.xml works", "sitemap.xml returned " + sitemap.status);

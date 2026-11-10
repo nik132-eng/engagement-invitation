@@ -10,3 +10,4 @@ assets/image*.png
 .local-data/
 !.env.example
 !.env.blob.example
+assets/photos/image*.png

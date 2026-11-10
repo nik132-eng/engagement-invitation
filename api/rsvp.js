@@ -38,14 +38,13 @@ module.exports = async (req, res) => {
   const name = plain(clean(b.name, 80));
   if (!name) return bad(res, 400, "name");
   const message = plain(clean(b.message, 300));
+  /* nearest city the page worked out on the guest's phone, e.g. "Valsad, Gujarat, India"; letters and punctuation only */
+  const place = /^[\p{L}\p{M}\s.,'’-]{2,80}$/u.test(String(b.place || "")) ? clean(b.place, 80) : null;
   if (spammy(name) || spammy(message)) return res.status(200).json({ ok: true });
 
   const attending = b.attending === "no" ? "no" : "yes";
   const guests = attending === "yes" ? Math.min(10, Math.max(1, parseInt(b.guests, 10) || 1)) : 0;
   const dist = Number(b.distanceKm);
-
-  let city = "";
-  try { city = decodeURIComponent(String(req.headers["x-vercel-ip-city"] || "")); } catch (e) {}
 
   const rec = {
     id: crypto.randomBytes(4).toString("hex"),
@@ -56,7 +55,7 @@ module.exports = async (req, res) => {
     message,
     distanceKm: Number.isFinite(dist) && dist >= 0 && dist < 25000 ? Math.round(dist * 10) / 10 : null,
     lang: b.lang === "gu" ? "gu" : "en",
-    city: clean(city, 60) || null,
+    place,
     country: clean(req.headers["x-vercel-ip-country"], 4) || null
   };
 

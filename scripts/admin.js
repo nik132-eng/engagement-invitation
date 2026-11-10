@@ -28,7 +28,7 @@ client.get(base + "/api/admin", { headers: { "x-admin-key": key } }, (res) => {
     if (!data.rsvps.length) return console.log("\nNo RSVPs yet.");
     console.log("\nRSVPs:");
     for (const r of data.rsvps) {
-      console.log("- " + r.at.slice(0, 16).replace("T", " ") + "  " + r.name + "  " + (r.attending === "yes" ? "coming x" + r.guests : "not coming") + (r.message ? '  "' + r.message + '"' : ""));
+      console.log("- " + r.at.slice(0, 16).replace("T", " ") + "  " + r.name + "  " + (r.attending === "yes" ? "coming x" + r.guests : "not coming") + (r.place ? "  [" + r.place + "]" : "") + (r.message ? '  "' + r.message + '"' : ""));
     }
   });
 }).on("error", (e) => { console.error("Could not reach " + base + " (is `npm run dev` running?): " + e.message); process.exit(1); });

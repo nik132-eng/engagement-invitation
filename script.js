@@ -23,14 +23,15 @@
       saveDate: "Save the Date", googleCal: "Add to Google Calendar", downloadIcs: "Download for Apple / Outlook",
       countTitle: "Counting down", days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds",
       countBefore: "until our engagement ceremony begins", countLive: "It's today. The celebration is on! 💍", countAfter: "Thank you for celebrating with us 💓",
-      galleryTitle: "Our Moments",
+      galleryTitle: "Our Moments", galShuffle: "Shuffle photos",
       songsTitle: "Songs of Love", songsNote: "Romantic songs play on their own, one after another. Tap any song to play from there.", songsShuffle: "Shuffle all songs",
       programTitle: "Program", event: "Engagement Ceremony",
       venueTitle: "Venue", directions: "Get Directions",
       distTitle: "How far are you?", distBtn: "Show my distance",
       distAway: "About {km} km away", distNear: "You're less than 1 km away!", distLoading: "Finding your distance…",
       distDenied: "Location is off. Tap to try again.",
-      distNote: "Your location stays on your phone. Only the rounded distance is shared if you RSVP.",
+      distFrom: "You are in {place}",
+      distNote: "Your exact location stays on your phone. Only the rounded distance and the nearest city name are shared if you RSVP.",
       giftsTitle: "Gifts", gifts: "Your blessings and presence are the best gift 💓",
       fName: "Your name", fAttend: "Will you be attending?", fYes: "Yes, I'll be there!", fNo: "Sorry, I can't make it",
       fGuests: "Total guests (including you)", fMsg: "Your message (optional)", fSend: "Send RSVP", fSending: "Sending…",
@@ -55,14 +56,15 @@
       saveDate: "તારીખ સાચવો", googleCal: "Google Calendar માં ઉમેરો", downloadIcs: "Apple / Outlook માટે ડાઉનલોડ",
       countTitle: "ગણતરી ચાલુ છે", days: "દિવસ", hours: "કલાક", minutes: "મિનિટ", seconds: "સેકન્ડ",
       countBefore: "અમારા સગાઈ સમારોહ શરૂ થવામાં", countLive: "આજે જ છે. ઉજવણી ચાલુ છે! 💍", countAfter: "અમારી સાથે ઉજવણી કરવા બદલ આભાર 💓",
-      galleryTitle: "અમારી યાદો",
+      galleryTitle: "અમારી યાદો", galShuffle: "ફોટા શફલ કરો",
       songsTitle: "પ્રેમનાં ગીતો", songsNote: "રોમેન્ટિક ગીતો એક પછી એક આપોઆપ વાગે છે. કોઈ પણ ગીત પર ટેપ કરો અને ત્યાંથી સાંભળો.", songsShuffle: "બધાં ગીતો શફલ કરો",
       programTitle: "કાર્યક્રમ", event: "સગાઈ સમારોહ",
       venueTitle: "સ્થળ", directions: "દિશા મેળવો",
       distTitle: "તમે કેટલા દૂર છો?", distBtn: "મારું અંતર બતાવો",
       distAway: "આશરે {km} કિમી દૂર", distNear: "તમે 1 કિમીથી પણ ઓછા દૂર છો!", distLoading: "અંતર શોધી રહ્યા છીએ…",
       distDenied: "લોકેશન બંધ છે. ફરી પ્રયત્ન કરવા ટેપ કરો.",
-      distNote: "તમારું લોકેશન તમારા ફોનમાં જ રહે છે. RSVP કરો તો ફક્ત આશરે અંતર જ શેર થાય છે.",
+      distFrom: "તમે {place} માં છો",
+      distNote: "તમારું ચોક્કસ લોકેશન તમારા ફોનમાં જ રહે છે. RSVP કરો તો ફક્ત આશરે અંતર અને નજીકના શહેરનું નામ શેર થાય છે.",
       giftsTitle: "ભેટ", gifts: "આપના આશીર્વાદ અને હાજરી જ અમારા માટે સૌથી મોટી ભેટ છે 💓",
       fName: "આપનું નામ", fAttend: "શું આપ હાજર રહેશો?", fYes: "હા, હું આવીશ!", fNo: "માફ કરશો, હું આવી શકીશ નહીં",
       fGuests: "કુલ મહેમાન (આપ સહિત)", fMsg: "આપનો સંદેશ (વૈકલ્પિક)", fSend: "RSVP મોકલો", fSending: "મોકલી રહ્યા છીએ…",
@@ -195,16 +197,29 @@
     return m ? { lat: +m[1], lng: +m[2] } : null;
   }
   var venue = (C.venueLat != null && C.venueLng != null) ? { lat: +C.venueLat, lng: +C.venueLng } : parseLatLng(C.mapUrl);
-  var distanceKm = null, distState = "idle", asked = false;
+  var distanceKm = null, distState = "idle", asked = false, place = null;
 
   function haversine(a, b) {
     var R = 6371, r = Math.PI / 180, dLat = (b.lat - a.lat) * r, dLng = (b.lng - a.lng) * r;
     var x = Math.pow(Math.sin(dLat / 2), 2) + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.pow(Math.sin(dLng / 2), 2);
     return 2 * R * Math.asin(Math.sqrt(x));
   }
+  /* nearest city to the guest, worked out on the phone from a bundled GeoNames list: the position itself is never sent anywhere */
+  function nearestPlace(lat, lng) {
+    return fetch("assets/places.json").then(function (r) { return r.json(); }).then(function (d) {
+      var best = null, bestKm = 150;
+      d.c.forEach(function (c) { var km = haversine({ lat: lat, lng: lng }, { lat: c[1], lng: c[2] }); if (km < bestKm) { bestKm = km; best = c; } });
+      if (!best) return null;
+      var parts = [best[0]], region = d.a[best[4]];
+      if (region && region !== best[0]) parts.push(region);
+      try { parts.push(new Intl.DisplayNames(["en"], { type: "region" }).of(best[3])); } catch (e) {}
+      return parts.join(", ");
+    }).catch(function () { return null; });
+  }
   function renderDistance() {
     if (!venue) return;
     var out = $("#distOut"), btn = $("#distBtn");
+    $("#distPlace").textContent = distState === "ok" && place ? t("distFrom").replace("{place}", place) : "";
     if (distState === "ok") {
       out.textContent = distanceKm < 1 ? t("distNear") : t("distAway").replace("{km}", distanceKm.toLocaleString(locale(), { maximumFractionDigits: 1 }));
       btn.hidden = true;
@@ -218,6 +233,7 @@
     navigator.geolocation.getCurrentPosition(function (pos) {
       distanceKm = Math.round(haversine({ lat: pos.coords.latitude, lng: pos.coords.longitude }, venue) * 10) / 10;
       distState = "ok"; renderDistance(); track("distance_shown");
+      nearestPlace(pos.coords.latitude, pos.coords.longitude).then(function (p) { place = p; renderDistance(); });
     }, function () { distState = "denied"; renderDistance(); }, { timeout: 12000, maximumAge: 600000 });
   }
   if (venue && navigator.geolocation) {
@@ -236,28 +252,76 @@
     }
   }
 
-  /* ================= Gallery ================= */
+  /* ================= Gallery: a shuffled 3D coverflow with autoplay ================= */
   if (C.photos && C.photos.length) {
     $("#gallerySection").hidden = false;
-    var g = $("#gallery"), dots = $("#dots");
-    C.photos.forEach(function (src, i) {
-      var f = document.createElement("figure"), im = document.createElement("img");
-      im.src = src; im.alt = "Nikunj & Ayushi, photo " + (i + 1); im.loading = i ? "lazy" : "eager"; im.decoding = "async";
-      im.width = 1080; im.height = 1440;
-      f.appendChild(im); g.appendChild(f);
-      var dot = document.createElement("i"); if (!i) dot.className = "on"; dots.appendChild(dot);
-    });
-    var prev = $("#galPrev"), nextP = $("#galNext"), n = C.photos.length;
-    var cur = function () { return Math.round(g.scrollLeft / g.clientWidth); };
-    function syncGallery() {
-      var i = cur();
-      [].forEach.call(dots.children, function (d, k) { d.className = k === i ? "on" : ""; });
-      prev.disabled = i <= 0; nextP.disabled = i >= n - 1;
+    var g = $("#gallery"), dots = $("#dots"), figs = [], gIdx = -1, gRaf = 0, gPausedUntil = 0, gVisible = false, gDealt = false;
+    var shuffled = function (a) { var b = a.slice(); for (var i = b.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = b[i]; b[i] = b[j]; b[j] = x; } return b; };
+    var gPause = function () { gPausedUntil = Date.now() + 9000; };
+    function gGo(i) {
+      var f = figs[(i + figs.length) % figs.length];
+      g.scrollTo({ left: f.offsetLeft - (g.clientWidth - f.offsetWidth) / 2, behavior: reduced ? "auto" : "smooth" });
     }
-    g.addEventListener("scroll", syncGallery, { passive: true });
-    prev.addEventListener("click", function () { g.scrollTo({ left: (cur() - 1) * g.clientWidth }); });
-    nextP.addEventListener("click", function () { g.scrollTo({ left: (cur() + 1) * g.clientWidth }); });
-    syncGallery();
+
+    /* every frame of the scroll: tilt and shrink the photos away from the centre, mark the centred one */
+    function paintGallery() {
+      gRaf = 0;
+      var mid = g.scrollLeft + g.clientWidth / 2, best = 0, bestD = Infinity;
+      figs.forEach(function (f, i) {
+        var d = (f.offsetLeft + f.offsetWidth / 2 - mid) / (f.offsetWidth || 1), a = Math.min(1, Math.abs(d));
+        if (!reduced) {
+          f.firstChild.style.transform = "rotateY(" + (-d * 30).toFixed(1) + "deg) scale(" + (1 - a * 0.14).toFixed(3) + ")";
+          f.firstChild.style.opacity = (1 - a * 0.5).toFixed(2);
+        }
+        f.style.zIndex = String(10 - Math.round(a * 5));
+        if (Math.abs(d) < bestD) { bestD = Math.abs(d); best = i; }
+      });
+      if (best !== gIdx) {
+        if (figs[gIdx]) figs[gIdx].classList.remove("is-active");
+        figs[best].classList.add("is-active"); gIdx = best;
+        [].forEach.call(dots.children, function (dt, k) { dt.className = k === best ? "on" : ""; });
+      }
+    }
+    /* a fresh random order every visit, and again on the Shuffle button */
+    function buildGallery() {
+      g.textContent = ""; dots.textContent = ""; figs = []; gIdx = -1;
+      shuffled(C.photos).forEach(function (src, i) {
+        var f = document.createElement("figure"), card = document.createElement("div"), im = document.createElement("img");
+        card.className = "gallery__card"; card.style.setProperty("--k", i);
+        im.src = src; im.alt = "Nikunj & Ayushi, photo " + (i + 1); im.loading = i < 3 ? "eager" : "lazy"; im.decoding = "async";
+        im.width = 1080; im.height = 1440;
+        card.appendChild(im); f.appendChild(card); g.appendChild(f); figs.push(f);
+        dots.appendChild(document.createElement("i"));
+      });
+      g.scrollTo({ left: 0, behavior: "instant" });
+      paintGallery();
+    }
+    /* the photos fly in like dealt cards */
+    function deal() {
+      g.classList.remove("dealing"); void g.offsetWidth; g.classList.add("dealing");
+      setTimeout(function () { g.classList.remove("dealing"); }, 1800);
+    }
+
+    buildGallery();
+    g.addEventListener("scroll", function () { if (!gRaf) gRaf = requestAnimationFrame(paintGallery); }, { passive: true });
+    addEventListener("resize", paintGallery);
+    ["pointerdown", "wheel", "touchstart"].forEach(function (ev) { g.addEventListener(ev, gPause, { passive: true }); });
+    g.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); gPause(); gGo(gIdx + 1); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); gPause(); gGo(gIdx - 1); }
+    });
+    $("#galPrev").addEventListener("click", function () { gPause(); gGo(gIdx - 1); });
+    $("#galNext").addEventListener("click", function () { gPause(); gGo(gIdx + 1); });
+    $("#galShuffle").addEventListener("click", function () { gPause(); buildGallery(); if (!reduced) deal(); track("gallery_shuffle"); });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) {
+        gVisible = en[0].isIntersecting;
+        if (gVisible && !gDealt) { gDealt = true; if (!reduced) deal(); }
+      }, { threshold: 0.35 }).observe($("#gallerySection"));
+    } else gVisible = true;
+    /* slideshow: moves on by itself while the gallery is on screen, and waits when a guest touches it */
+    if (!reduced) setInterval(function () { if (gVisible && !document.hidden && Date.now() > gPausedUntil) gGo(gIdx + 1); }, 4800);
   }
 
   /* ================= RSVP ================= */
@@ -297,7 +361,7 @@
     var name = form.name.value.trim();
     if (!name) { err.textContent = t("fNeedName"); err.hidden = false; form.name.focus(); return; }
     var attending = form.attend.value;
-    var payload = { name: name, attending: attending, guests: attending === "yes" ? guests : 0, message: form.message.value.trim(), distanceKm: distanceKm, lang: lang, t: Math.round(performance.now()) };
+    var payload = { name: name, attending: attending, guests: attending === "yes" ? guests : 0, message: form.message.value.trim(), distanceKm: distanceKm, place: place, lang: lang, t: Math.round(performance.now()) };
     btn.disabled = true; btn.textContent = t("fSending");
     fetch(C.rsvpEndpoint, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) })
       .then(function (r) { if (!r.ok) throw new Error("bad"); return r.json(); })

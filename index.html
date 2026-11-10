@@ -190,8 +190,8 @@
       <h2 class="title script" data-anim="words" data-i18n="galleryTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <div class="gallery-wrap">
-        <div class="gallery" id="gallery" tabindex="0" aria-label="Photo gallery"></div>
-        <button class="gallery__nav gallery__nav--prev" id="galPrev" type="button" aria-label="Previous photo" disabled>
+        <div class="gallery" id="gallery" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Photo gallery"></div>
+        <button class="gallery__nav gallery__nav--prev" id="galPrev" type="button" aria-label="Previous photo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
         </button>
         <button class="gallery__nav gallery__nav--next" id="galNext" type="button" aria-label="Next photo">
@@ -199,6 +199,7 @@
         </button>
       </div>
       <div class="dots" id="dots" aria-hidden="true"></div>
+      <button class="btn btn--ghost gallery__shuffle" id="galShuffle" type="button" data-i18n="galShuffle"></button>
     </section>
 
     <!-- PROGRAM -->
@@ -223,6 +224,7 @@
       <div class="dist" id="distCard" hidden>
         <p class="dist__title" data-i18n="distTitle"></p>
         <p class="dist__out" id="distOut" aria-live="polite"></p>
+        <p class="dist__place" id="distPlace"></p>
         <button class="btn btn--ghost" id="distBtn" type="button" data-i18n="distBtn"></button>
         <p class="dist__note" data-i18n="distNote"></p>
       </div>
@@ -291,6 +293,7 @@
   <footer class="footer">
     <img class="footer__logo" src="assets/logo-maroon.svg" alt="" width="36" height="32">
     <p data-i18n="footer"></p>
+    <p class="footer__credit">Place names from <a href="https://www.geonames.org" target="_blank" rel="noopener">GeoNames</a> (CC BY 4.0)</p>
   </footer>
 
   <!-- Now playing + dock (mobile first) -->

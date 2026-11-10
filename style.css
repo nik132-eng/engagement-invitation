@@ -253,18 +253,38 @@ html[lang="gu"] .unit span { font-family: var(--serif); letter-spacing: 0.02em; 
 .count__note { margin-top: 20px; font-style: italic; font-size: 20px; }
 
 /* gallery */
-.gallery-wrap { position: relative; width: min(100%, 420px); margin: 0 auto; }
-.gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none; width: 100%; aspect-ratio: 3 / 4; border-radius: 18px; border: 6px solid var(--cream); background: var(--sand); box-shadow: 0 0 0 1px var(--line), 0 18px 40px -20px rgba(60, 25, 18, 0.7); }
+/* gallery: a shuffled 3D coverflow. The photos tilt away from the centre as you scroll (see paintGallery in script.js) */
+.gallery-wrap { position: relative; width: min(100%, 480px); margin: 0 auto; }
+.gallery {
+  --fw: 76%; position: relative; display: flex; overflow-x: auto; overflow-y: hidden; padding: 24px calc((100% - var(--fw)) / 2);
+  scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none;
+  perspective: 1100px; perspective-origin: 50% 45%;
+}
 .gallery::-webkit-scrollbar { display: none; }
-.gallery figure { flex: 0 0 100%; height: 100%; margin: 0; scroll-snap-align: center; scroll-snap-stop: always; }
-.gallery img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-.gallery__nav { position: absolute; top: 50%; z-index: 1; display: grid; place-items: center; width: 42px; height: 42px; margin-top: -21px; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--cream) 88%, transparent); color: var(--maroon); box-shadow: 0 6px 16px -8px rgba(60, 25, 18, 0.7); cursor: pointer; }
-.gallery__nav--prev { left: 10px; }
-.gallery__nav--next { right: 10px; }
-.gallery__nav:disabled { opacity: 0; pointer-events: none; }
-.dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
-.dots i { width: 8px; height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--maroon) 28%, transparent); transition: width 0.25s, background 0.25s; }
-.dots i.on { width: 20px; background: var(--maroon); }
+/* the figure only snaps into place; the tilting happens on the inner card, so snapping never sees a moved box */
+.gallery figure { position: relative; flex: 0 0 100%; aspect-ratio: 3 / 4; margin: 0; scroll-snap-align: center; scroll-snap-stop: always; }
+.gallery__card {
+  position: absolute; inset: 0; overflow: hidden; border-radius: 20px; border: 6px solid var(--cream); background: var(--sand);
+  box-shadow: 0 0 0 1px var(--line), 0 24px 40px -22px rgba(60, 25, 18, 0.8);
+}
+.gallery__card::before { content: ""; position: absolute; inset: 9px; z-index: 2; border: 1px solid rgba(249, 246, 241, 0.75); border-radius: 12px; pointer-events: none; }
+.gallery__card::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.38) 50%, transparent 62%); transform: translateX(-130%); }
+.gallery img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transform: scale(1.02); }
+.gallery figure.is-active img { animation: kenburns 9s ease-in-out forwards; }
+.gallery figure.is-active .gallery__card::after { animation: glint 1.6s 0.25s ease-out; }
+@keyframes kenburns { from { transform: scale(1.02) translate(0, 0); } to { transform: scale(1.11) translate(-1.6%, -1.2%); } }
+@keyframes glint { to { transform: translateX(130%); } }
+.gallery.dealing .gallery__card { animation: deal 0.85s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(var(--k) * 55ms); }
+@keyframes deal { from { opacity: 0; translate: 55% 8%; rotate: 14deg; scale: 0.7; } to { opacity: 1; translate: 0 0; rotate: 0deg; scale: 1; } }
+.gallery__nav { position: absolute; top: 50%; z-index: 5; display: grid; place-items: center; width: 42px; height: 42px; margin-top: -21px; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--cream) 88%, transparent); color: var(--maroon); box-shadow: 0 6px 16px -8px rgba(60, 25, 18, 0.7); cursor: pointer; }
+.gallery__nav--prev { left: 6px; }
+.gallery__nav--next { right: 6px; }
+.dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 6px auto 18px; max-width: 320px; }
+.dots i { position: relative; overflow: hidden; width: 8px; height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--maroon) 28%, transparent); transition: width 0.25s; }
+.dots i.on { width: 22px; }
+.dots i.on::after { content: ""; position: absolute; inset: 0; background: var(--maroon); transform-origin: left; animation: dotfill 4.8s linear forwards; }
+@keyframes dotfill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (min-width: 600px) { .gallery { --fw: 70%; } }
 
 /* program + venue */
 .program__date { font: 700 15px/1.4 var(--display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--maroon); }
@@ -286,6 +306,8 @@ html[lang="gu"] .dist__title { font-family: var(--serif); letter-spacing: 0.02em
 .dist__out { margin: 10px 0 14px; font: 600 clamp(26px, 8vw, 36px)/1.2 var(--display); color: var(--maroon); }
 html[lang="gu"] .dist__out { font-family: var(--serif); }
 .dist__out:empty { display: none; }
+.dist__place { margin: -4px 0 12px; font-size: 18px; font-style: italic; opacity: 0.85; }
+.dist__place:empty { display: none; }
 .dist__note { margin-top: 12px; font-size: 15px; opacity: 0.8; }
 
 /* songs (YouTube playlist) */
@@ -343,6 +365,8 @@ html[lang="gu"] .dist__out { font-family: var(--serif); }
 .closing__line { font-size: clamp(30px, 7.5vw, 46px); line-height: 1.35; color: var(--maroon); }
 .closing__names { margin-top: 12px; font-size: 28px; color: var(--maroon-soft); }
 .footer__logo { display: block; width: 34px; height: auto; margin: 0 auto 10px; }
+.footer__credit { margin-top: 6px; font-size: 12px; opacity: 0.7; }
+.footer__credit a { color: inherit; }
 .footer { position: relative; z-index: 4; padding: 30px 24px 16px; text-align: center; font-size: 15px; border-top: 1px solid var(--line); opacity: 0.8; }
 
 /* ---------- scratch to reveal the date ---------- */
@@ -402,4 +426,7 @@ body.opened .hero__name:last-child .ch { animation-delay: calc(1.8s + var(--i) *
   .hero__name .ch { background: none; -webkit-text-fill-color: currentColor; color: var(--maroon); }
   .scratch { opacity: 1; animation: none !important; }
   .hero__logo { opacity: 1; animation: none !important; }
+  .gallery__card { transform: none !important; opacity: 1 !important; }
+  .gallery figure.is-active img, .gallery figure.is-active .gallery__card::after, .dots i.on::after { animation: none !important; }
+  .dots i.on::after { transform: none; }
 }
