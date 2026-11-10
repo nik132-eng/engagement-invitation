@@ -191,11 +191,13 @@ html[lang="gu"] .scroll-hint { font-family: var(--serif); letter-spacing: 0.02em
 
 /* families */
 .families { display: grid; gap: 14px; justify-items: center; }
-.family h3 { font-family: var(--display); font-weight: 600; font-size: 22px; letter-spacing: 0.06em; color: var(--maroon); }
-html[lang="gu"] .family h3 { font-family: var(--serif); letter-spacing: 0; font-size: 25px; }
-.family h3::after { content: ""; display: block; width: 44px; height: 1px; margin: 8px auto 10px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+.family h3 { margin-top: 2px; font-family: var(--display); font-weight: 600; font-size: 28px; letter-spacing: 0.06em; color: var(--maroon); }
+html[lang="gu"] .family h3 { font-family: var(--serif); letter-spacing: 0; font-size: 31px; }
 .family p { max-width: 28ch; margin: 4px auto 0; font-size: 20px; font-style: italic; }
 .family__parents { white-space: pre-line; line-height: 1.75; }
+.family p.family__rel { position: relative; margin-top: 14px; padding-top: 16px; font-size: 26px; font-style: normal; color: var(--maroon-soft); }
+.family p.family__rel::before { content: ""; position: absolute; top: 0; left: 50%; width: 44px; height: 1px; translate: -50% 0; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+html[lang="gu"] .family p.family__rel { font-family: var(--serif); font-size: 23px; }
 .families__line { margin-bottom: 26px; font-size: clamp(26px, 7vw, 36px); line-height: 1.35; white-space: pre-line; color: var(--maroon-soft); }
 .families__blessing { max-width: 34ch; margin: 0 auto; font-size: 20px; line-height: 1.7; font-style: italic; white-space: pre-line; color: var(--maroon-soft); }
 .families__amp { font-family: var(--script); font-size: 34px; color: var(--maroon-soft); }
@@ -395,7 +397,10 @@ body.opened .hero__intro .ch { animation: chIn 0.9s cubic-bezier(.2, .8, .2, 1) 
 .hero__name .ch {
   background: linear-gradient(100deg, var(--maroon) 40%, #d9a95a 50%, var(--maroon) 60%) 100% 0 / 250% 100% no-repeat;
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; text-shadow: none;
+  /* the gradient is only painted inside this box, and Gujarati marks sit above and below the line: grow the box, keep the layout */
+  padding: 0.32em 0.1em; margin: -0.32em -0.1em;
 }
+html[lang="gu"] .hero__name { line-height: 1.25; }
 body.opened .hero__name .ch { animation: chIn 1s cubic-bezier(.2, .8, .2, 1) forwards, sheen 5.5s ease-in-out infinite; animation-delay: calc(1.2s + var(--i) * 110ms), calc(2.6s + var(--i) * 150ms); }
 body.opened .hero__name:last-child .ch { animation-delay: calc(1.8s + var(--i) * 110ms), calc(3.2s + var(--i) * 150ms); }
 .reveal.in .ch { animation: chIn 0.8s cubic-bezier(.2, .8, .2, 1) forwards; animation-delay: calc(0.15s + var(--i) * 70ms); }
