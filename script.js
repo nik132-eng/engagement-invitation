@@ -15,14 +15,16 @@
       groomName: "Nikunj", brideName: "Ayushi", scroll: "Scroll",
       welcome: "Welcome to the celebration of love and togetherness 💍✨\nWe are delighted to have you with us on our Engagement.",
       familiesTitle: "Our Families",
-      groomParents: "Son of Champakbhai R. Rohit & Jaybalaben C. Rohit",
-      brideParents: "Daughter of Kishmatbhai A. Andhariya & Rinkuben K. Andhariya",
+      familiesLine: "Two souls, two families,\none beautiful beginning.",
+      groomParents: "Son of\nChampakbhai R. Rohit\n&\nJaybalaben C. Rohit",
+      brideParents: "Daughter of\nKishmatbhai A. Andhariya\n&\nRinkuben K. Andhariya",
+      familiesBlessing: "Where two hearts meet, two families become one,\nand every blessing turns into a promise of forever.",
       foreverTitle: "Our forever begins", invited: "You're Invited!",
       saveDate: "Save the Date", googleCal: "Add to Google Calendar", downloadIcs: "Download for Apple / Outlook",
       countTitle: "Counting down", days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds",
       countBefore: "until our engagement ceremony begins", countLive: "It's today. The celebration is on! 💍", countAfter: "Thank you for celebrating with us 💓",
       galleryTitle: "Our Moments",
-      songsTitle: "Our Favourite Songs", songsNote: "Tap a song to play it here. The background music pauses meanwhile.", songsShuffle: "Shuffle all songs",
+      songsTitle: "Songs of Love", songsNote: "Romantic songs play on their own, one after another. Tap any song to play from there.", songsShuffle: "Shuffle all songs",
       programTitle: "Program", event: "Engagement Ceremony",
       venueTitle: "Venue", directions: "Get Directions",
       distTitle: "How far are you?", distBtn: "Show my distance",
@@ -36,7 +38,8 @@
       thanksName: "Thank you, {name}!", thanksYes: "We've noted your RSVP. See you on 12 December!", thanksNo: "Thanks for letting us know. You'll be missed.",
       fEdit: "Change my reply",
       closing: "We can't wait to celebrate with you!", signoff: "Nikunj & Ayushi",
-      footer: "Made with love for Nikunj & Ayushi", dockRsvp: "RSVP", nowPlaying: "composed for you"
+      footer: "Made with love for Nikunj & Ayushi", dockRsvp: "RSVP",
+      scratchHint: "Scratch to reveal the date & time", scratchAria: "Scratch to reveal the date and time. Press Enter to reveal it."
     },
     gu: {
       splashKicker: "આપ સૌને આમંત્રણ", tapOpen: "ખોલવા માટે સીલ પર ટેપ કરો",
@@ -44,14 +47,16 @@
       groomName: "નિકુંજ", brideName: "આયુષી", scroll: "નીચે જુઓ",
       welcome: "પ્રેમ અને સાથની ઉજવણીમાં આપનું સ્વાગત છે 💍✨\nઅમારા સગાઈ પ્રસંગે આપની હાજરી અમારા માટે ખૂબ આનંદની વાત છે.",
       familiesTitle: "અમારા પરિવાર",
-      groomParents: "ચંપકભાઈ આર. રોહિત અને જયબાળાબેન સી. રોહિતના સુપુત્ર",
-      brideParents: "કિસ્મતભાઈ એ. આંધરિયા અને રિંકુબેન કે. આંધરિયાની સુપુત્રી",
+      familiesLine: "બે આત્મા, બે પરિવાર,\nએક સુંદર શરૂઆત.",
+      groomParents: "ચંપકભાઈ આર. રોહિત\nઅને\nજયબાળાબેન સી. રોહિતના\nસુપુત્ર",
+      brideParents: "કિસ્મતભાઈ એ. અંધારિયા\nઅને\nરિંકુબેન કે. અંધારિયાની\nસુપુત્રી",
+      familiesBlessing: "જ્યાં બે હૃદય મળે છે, ત્યાં બે પરિવાર એક થાય છે,\nઅને દરેક આશીર્વાદ સદાના સાથનું વચન બની જાય છે.",
       foreverTitle: "અમારી સફર અહીંથી શરૂ થાય છે", invited: "આપ સૌને આમંત્રણ",
       saveDate: "તારીખ સાચવો", googleCal: "Google Calendar માં ઉમેરો", downloadIcs: "Apple / Outlook માટે ડાઉનલોડ",
       countTitle: "ગણતરી ચાલુ છે", days: "દિવસ", hours: "કલાક", minutes: "મિનિટ", seconds: "સેકન્ડ",
       countBefore: "અમારા સગાઈ સમારોહ શરૂ થવામાં", countLive: "આજે જ છે. ઉજવણી ચાલુ છે! 💍", countAfter: "અમારી સાથે ઉજવણી કરવા બદલ આભાર 💓",
       galleryTitle: "અમારી યાદો",
-      songsTitle: "અમારાં મનગમતાં ગીતો", songsNote: "ગીત પર ટેપ કરો અને અહીં જ સાંભળો. એ દરમિયાન બેકગ્રાઉન્ડ મ્યુઝિક થોભી જશે.", songsShuffle: "બધાં ગીતો શફલ કરો",
+      songsTitle: "પ્રેમનાં ગીતો", songsNote: "રોમેન્ટિક ગીતો એક પછી એક આપોઆપ વાગે છે. કોઈ પણ ગીત પર ટેપ કરો અને ત્યાંથી સાંભળો.", songsShuffle: "બધાં ગીતો શફલ કરો",
       programTitle: "કાર્યક્રમ", event: "સગાઈ સમારોહ",
       venueTitle: "સ્થળ", directions: "દિશા મેળવો",
       distTitle: "તમે કેટલા દૂર છો?", distBtn: "મારું અંતર બતાવો",
@@ -65,7 +70,8 @@
       thanksName: "આભાર, {name}!", thanksYes: "આપની હાજરીની નોંધ થઈ ગઈ છે. 12 ડિસેમ્બરે મળીએ!", thanksNo: "જાણ કરવા બદલ આભાર. આપની ખોટ સાલશે.",
       fEdit: "જવાબ બદલો",
       closing: "આપની સાથે ઉજવણી કરવા અમે આતુર છીએ!", signoff: "નિકુંજ અને આયુષી",
-      footer: "નિકુંજ અને આયુષી માટે પ્રેમથી બનાવેલ", dockRsvp: "RSVP", nowPlaying: "તમારા માટે રચાયેલ"
+      footer: "નિકુંજ અને આયુષી માટે પ્રેમથી બનાવેલ", dockRsvp: "RSVP",
+      scratchHint: "તારીખ અને સમય જોવા સ્ક્રેચ કરો", scratchAria: "તારીખ અને સમય જોવા સ્ક્રેચ કરો. સીધું જોવા Enter દબાવો."
     }
   };
 
@@ -99,8 +105,10 @@
       var v = T[lang][el.getAttribute("data-i18n")];
       if (v != null) el.textContent = v;
     });
+    document.querySelectorAll("[data-anim]").forEach(splitText);
+    $("#scratchFoil").setAttribute("aria-label", t("scratchAria"));
     $("#langLabel").textContent = lang === "en" ? "ગુજરાતી" : "English";
-    renderDates(); renderDistance(); tick(); updateTitleLabel(); renderThanks();
+    renderDates(); renderDistance(); tick(); renderThanks();
   }
   $("#langBtn").addEventListener("click", function () {
     lang = lang === "en" ? "gu" : "en";
@@ -289,7 +297,7 @@
     var name = form.name.value.trim();
     if (!name) { err.textContent = t("fNeedName"); err.hidden = false; form.name.focus(); return; }
     var attending = form.attend.value;
-    var payload = { name: name, attending: attending, guests: attending === "yes" ? guests : 0, message: form.message.value.trim(), distanceKm: distanceKm, lang: lang };
+    var payload = { name: name, attending: attending, guests: attending === "yes" ? guests : 0, message: form.message.value.trim(), distanceKm: distanceKm, lang: lang, t: Math.round(performance.now()) };
     btn.disabled = true; btn.textContent = t("fSending");
     fetch(C.rsvpEndpoint, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) })
       .then(function (r) { if (!r.ok) throw new Error("bad"); return r.json(); })
@@ -303,167 +311,84 @@
       .then(function () { btn.disabled = false; btn.textContent = t("fSend"); });
   });
 
-  /* ================= Music ================= */
+  /* ================= Music: one playlist of official YouTube songs ================= */
+  /* The songs play by default as one shuffled playlist, in the player inside the "Songs of Love"
+     section (no floating overlay). Nothing is requested from YouTube until the guest taps the seal. */
   var music = (function () {
-    var audio = $("#bgm"), playBtn = $("#playBtn"), nextBtn = $("#nextBtn"), np = $("#nowPlaying"), npTitle = $("#npTitle");
-    var tracks = (C.tracks || []).slice(), order = [], idx = 0, mode = tracks.length ? "files" : "gen";
-    var playing = false, started = false, wantPlay = false, curTitle = "";
+    var songs = (C.youtubeSongs || []).filter(function (s) { return s && /^[\w-]{11}$/.test(s.id); });
+    var playBtn = $("#playBtn"), nextBtn = $("#nextBtn"), np = $("#nowPlaying"), npTitle = $("#npTitle");
+    var section = $("#songsSection"), list = $("#songsList");
+    if (!songs.length) { playBtn.hidden = true; nextBtn.hidden = true; return { start: function () {} }; }
+    section.hidden = false;
 
-    /* ---- shared UI ---- */
-    function ui(on) {
-      playing = on;
-      $("#icPlay").hidden = on; $("#icPause").hidden = !on;
-      playBtn.setAttribute("aria-pressed", String(on));
-      np.hidden = !started; np.classList.toggle("paused", !on);
-    }
-    function setTitle(s) { curTitle = s; updateTitleLabel(); }
-    window.updateTitleLabel = function () {
-      npTitle.textContent = curTitle ? curTitle + (mode === "gen" ? " · " + t("nowPlaying") : "") : "";
-    };
+    var order = [], idx = 0, yt = null, ready = false, booting = false;
+    var started = false, wantPlay = false, playing = false, failures = 0, rows = [];
 
-    /* ---- Mode A: your own tracks (shuffled) ---- */
-    function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
-    function loadFile(i) {
-      var tr = tracks[order[i]]; audio.src = tr.src; setTitle(tr.title || "Romantic song");
-      return audio.play().then(function () { ui(true); }).catch(function () { ui(false); });
+    function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
+    function reshuffle() {
+      var last = order.length ? order[order.length - 1] : -1;
+      order = shuffle(songs.map(function (_, i) { return i; }));
+      if (songs.length > 1 && order[0] === last) { var x = order[0]; order[0] = order[1]; order[1] = x; }
     }
-    audio.addEventListener("ended", function () { filesNext(); });
-    function filesNext() { idx = (idx + 1) % order.length; track("music_next"); return loadFile(idx); }
+    function current() { return songs[order[idx]]; }
+    function advance() { idx++; if (idx >= order.length) { reshuffle(); idx = 0; } }
 
-    /* ---- Mode B: a unique romantic piece composed live for each visitor ---- */
-    var ctx, master, bus, verb, timer = null, nextTime = 0, bar = 0, S = null;
-    var SCALE = [0, 2, 4, 5, 7, 9, 11];
-    var PROGS = [[0, 4, 5, 3], [5, 3, 0, 4], [0, 5, 3, 4], [0, 2, 3, 4], [3, 4, 2, 5], [0, 3, 5, 4]]; /* I V vi IV style loops */
-    var RHYTHMS = [[2, 1, 1], [1, 1, 2], [3, 1], [1, 1, 1, 1], [2, 2], [1.5, 0.5, 2]];
-    var A = ["Moonlit", "Golden", "Rose", "Velvet", "Silver", "Soft", "Endless", "Whispered", "Evening", "Sunlit"];
-    var B = ["Promise", "Evening", "Petals", "Melody", "Dance", "Vows", "Dreams", "Forever", "Embrace", "Waltz"];
-    var rnd = function (n) { return Math.floor(Math.random() * n); };
-    var pick = function (a) { return a[rnd(a.length)]; };
-    var mtof = function (m) { return 440 * Math.pow(2, (m - 69) / 12); };
-    var degNote = function (i) { return S.root + SCALE[((i % 7) + 7) % 7] + 12 * Math.floor(i / 7); };
-
-    function newSong() {
-      var title, a, b2; do { a = pick(A); b2 = pick(B); title = a + " " + b2; } while (title === curTitle || a === b2);
-      S = { root: 48 + rnd(7), bpm: 60 + rnd(19), prog: pick(PROGS), title: title, mel: 9 + rnd(3), bars: 0,
-            pat: pick([[0, 1, 2, 1, 0, 1, 2, 1], [0, 2, 1, 2, 0, 2, 1, 2], [0, 1, 2, 3, 2, 1, 2, 1], [0, 1, 2, 1, 3, 1, 2, 1]]) };
-      bar = 0; setTitle(S.title);
+    function render() {
+      /* the icons are SVG elements, which have no .hidden property, so toggle the attribute */
+      $("#icPlay").toggleAttribute("hidden", wantPlay); $("#icPause").toggleAttribute("hidden", !wantPlay);
+      playBtn.setAttribute("aria-pressed", String(wantPlay));
+      np.hidden = !started; np.classList.toggle("paused", !playing);
+      npTitle.textContent = started ? current().title : "";
+      rows.forEach(function (b, i) { b.setAttribute("aria-current", String(started && i === order[idx])); });
     }
-    function makeReverb() {
-      var len = ctx.sampleRate * 3.2, buf = ctx.createBuffer(2, len, ctx.sampleRate);
-      for (var c = 0; c < 2; c++) { var d = buf.getChannelData(c); for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6); }
-      var cv = ctx.createConvolver(); cv.buffer = buf; return cv;
-    }
-    function initAudio() {
-      var AC = window.AudioContext || window.webkitAudioContext; ctx = new AC();
-      master = ctx.createGain(); master.gain.value = 0;
-      var comp = ctx.createDynamicsCompressor(); master.connect(comp); comp.connect(ctx.destination);
-      bus = ctx.createGain(); bus.connect(master);
-      verb = makeReverb(); var wet = ctx.createGain(); wet.gain.value = 0.55; bus.connect(verb); verb.connect(wet); wet.connect(master);
-    }
-    function voice(freq, at, dur, o) {
-      var osc = ctx.createOscillator(), g = ctx.createGain(), out = g;
-      osc.type = o.type || "sine"; osc.frequency.value = freq; if (o.detune) osc.detune.value = o.detune;
-      g.gain.setValueAtTime(0.0001, at);
-      g.gain.exponentialRampToValueAtTime(o.gain, at + (o.attack || 0.01));
-      g.gain.exponentialRampToValueAtTime(0.0001, at + dur + (o.release || 0.4));
-      osc.connect(g);
-      if (o.lp) { var f = ctx.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = o.lp; g.connect(f); out = f; }
-      out.connect(bus); osc.start(at); osc.stop(at + dur + (o.release || 0.4) + 0.05);
-    }
-    function scheduleBar(at) {
-      var beat = 60 / S.bpm, barLen = beat * 4, deg = S.prog[bar % S.prog.length], i;
-      var ch = [degNote(deg), degNote(deg + 2), degNote(deg + 4)];
-      ch.forEach(function (n) { [-7, 7].forEach(function (dt) { voice(mtof(n + 12), at, barLen, { type: "triangle", gain: 0.03, attack: 1.1, release: 1.8, detune: dt, lp: 1100 }); }); });
-      voice(mtof(ch[0] - 12), at, barLen * 0.92, { type: "sine", gain: 0.2, attack: 0.03, release: 0.5 });
-      for (i = 0; i < 8; i++) {
-        var k = S.pat[i], n = ch[k % 3] + 12 * Math.floor(k / 3) + 12;
-        voice(mtof(n), at + i * beat / 2, 0.05, { type: "triangle", gain: 0.085, attack: 0.006, release: 1.1 });
-      }
-      var t0 = at + (bar % 4 === 3 ? beat * 0.5 : 0), r = pick(RHYTHMS), pos = 0, note;
-      for (i = 0; i < r.length; i++) {
-        if (Math.random() > 0.15) {
-          S.mel = Math.max(7, Math.min(14, S.mel + pick([-2, -1, -1, 0, 1, 1, 2])));
-          note = degNote(S.mel);
-          var f0 = mtof(note), ds = r[i] * beat, st = t0 + pos * beat;
-          voice(f0, st, ds * 0.9, { type: "sine", gain: 0.1, attack: 0.02, release: 1.5 });
-          voice(f0 * 2, st, ds * 0.5, { type: "sine", gain: 0.03, attack: 0.02, release: 1.0 });
-        }
-        pos += r[i];
-      }
-      bar++; S.bars++;
-    }
-    function pump() {
-      while (nextTime < ctx.currentTime + 1.6) {
-        if (S.bars >= 16) { newSong(); track("music_song", { title: S.title }); }
-        scheduleBar(nextTime); nextTime += (60 / S.bpm) * 4;
-      }
-    }
-    function genStart() {
-      if (!ctx) { initAudio(); newSong(); }
-      ui(true); /* optimistic: the button flips instantly, reverts if the browser refuses */
-      return ctx.resume().then(function () {
-        nextTime = ctx.currentTime + 0.15; pump();
-        timer = setInterval(pump, 250);
-        master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
-        master.gain.linearRampToValueAtTime(0.9, ctx.currentTime + 2.5);
-        ui(true);
-      }).catch(function () { ui(false); });
-    }
-    function genPause() {
-      clearInterval(timer); timer = null;
-      if (!ctx) return;
-      master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
-      master.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.6);
-      setTimeout(function () { if (!timer) ctx.suspend(); }, 700);
-      ui(false);
-    }
-    function genNext() {
-      if (!ctx || !playing) return genStart();
-      newSong(); track("music_next");
-      nextTime = ctx.currentTime + 0.2; /* new song begins on the next bar */
+    function load() {
+      if (!ready) return;
+      if (wantPlay) yt.loadVideoById(current().id); else yt.cueVideoById(current().id);
+      render();
     }
 
-    /* ---- public ---- */
-    function start() {
-      started = true; wantPlay = true;
-      if (mode === "files") { order = shuffle(tracks.map(function (_, i) { return i; })); idx = 0; loadFile(0); }
-      else genStart();
-      track("music_start", { mode: mode });
+    function onReady() { ready = true; load(); }
+    function onState(e) {
+      var S = window.YT.PlayerState;
+      if (e.data === S.PLAYING) { playing = true; wantPlay = true; failures = 0; render(); }
+      else if (e.data === S.PAUSED) { playing = false; wantPlay = false; render(); }
+      else if (e.data === S.ENDED) { playing = false; next(); }
     }
+    /* a song that cannot be embedded is skipped; give up only if every one fails */
+    function onError() { failures++; if (failures > songs.length) { wantPlay = false; render(); return; } advance(); load(); }
+
+    function create() {
+      yt = new window.YT.Player("ytMount", {
+        width: "100%", height: "100%", videoId: current().id, host: "https://www.youtube-nocookie.com",
+        playerVars: { playsinline: 1, rel: 0, modestbranding: 1, origin: location.origin },
+        events: { onReady: onReady, onStateChange: onState, onError: onError }
+      });
+    }
+    function boot() {
+      if (booting) return; booting = true;
+      if (window.YT && window.YT.Player) { create(); return; }
+      window.onYouTubeIframeAPIReady = create;
+      var s = document.createElement("script"); s.src = "https://www.youtube.com/iframe_api"; s.async = true; document.head.appendChild(s);
+    }
+
+    /* play the playlist from its current position */
+    function go() { started = true; wantPlay = true; render(); boot(); load(); }
+    function start() { if (started) return; go(); track("music_start"); }
+    function next() { if (!started) { start(); return; } advance(); go(); track("music_next"); }
     function toggle() {
       if (!started) { start(); return; }
-      if (playing) { wantPlay = false; mode === "files" ? (audio.pause(), ui(false)) : genPause(); track("music_pause"); }
-      else { wantPlay = true; mode === "files" ? audio.play().then(function () { ui(true); }) : genStart(); track("music_resume"); }
+      wantPlay = !wantPlay; render();
+      if (ready) { if (wantPlay) yt.playVideo(); else yt.pauseVideo(); }
+      track(wantPlay ? "music_resume" : "music_pause");
     }
-    function next() { if (!started) { start(); return; } if (mode === "files") filesNext(); else genNext(); }
-    function pause() { if (playing) toggle(); else wantPlay = false; }
-    playBtn.addEventListener("click", toggle);
-    nextBtn.addEventListener("click", next);
-    document.addEventListener("visibilitychange", function () {
-      if (document.hidden && playing) { mode === "files" ? (audio.pause(), ui(false)) : genPause(); }
-      else if (!document.hidden && wantPlay && !playing && started) { mode === "files" ? audio.play().then(function () { ui(true); }).catch(function () {}) : genStart(); }
-    });
-    return { start: start, pause: pause };
-  })();
+    /* tapping a song plays it, then carries on down the list */
+    function playFrom(i) {
+      order = songs.map(function (_, k) { return (i + k) % songs.length; }); idx = 0; failures = 0;
+      go(); track("song_play", { title: songs[i].title });
+    }
+    function shuffleAll() { reshuffle(); idx = 0; failures = 0; go(); track("song_shuffle"); }
 
-  /* ================= Favourite songs (official YouTube videos, tap to play) ================= */
-  var songs = (C.youtubeSongs || []).filter(function (s) { return s && /^[\w-]{11}$/.test(s.id); });
-  if (songs.length) {
-    $("#songsSection").hidden = false;
-    var list = $("#songsList"), player = $("#songsPlayer");
-    function playSongs(ids) {
-      music.pause();
-      player.innerHTML = "";
-      var f = document.createElement("iframe");
-      f.src = "https://www.youtube-nocookie.com/embed/" + ids[0] + "?autoplay=1&rel=0&playsinline=1&playlist=" + ids.join(","); /* playlist must repeat the first id or YouTube skips it */
-      f.title = "YouTube video player";
-      f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-      f.referrerPolicy = "strict-origin-when-cross-origin";
-      f.allowFullscreen = true;
-      player.appendChild(f); player.hidden = false;
-      [].forEach.call(list.querySelectorAll("button"), function (b) { b.setAttribute("aria-current", String(b.dataset.id === ids[0])); });
-      player.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
-    }
+    /* the visible list, with a heading per language group */
     var lastGroup = null;
     songs.forEach(function (s, i) {
       if (s.group && s.group !== lastGroup) {
@@ -471,24 +396,91 @@
         list.appendChild(h); lastGroup = s.group;
       }
       var li = document.createElement("li"), b = document.createElement("button");
-      b.type = "button"; b.dataset.id = s.id;
+      b.type = "button";
       b.innerHTML = '<span class="songs__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span><span class="songs__title"></span><span class="songs__film"></span></span>';
       b.querySelector(".songs__title").textContent = s.title;
       b.querySelector(".songs__film").textContent = s.film || "";
-      b.addEventListener("click", function () {
-        /* the tapped song first, then the rest of the list in order */
-        playSongs(songs.slice(i).concat(songs.slice(0, i)).map(function (x) { return x.id; }));
-        track("song_play", { title: s.title });
-      });
-      li.appendChild(b); list.appendChild(li);
+      b.addEventListener("click", function () { playFrom(i); });
+      li.appendChild(b); list.appendChild(li); rows.push(b);
     });
-    $("#songsShuffle").addEventListener("click", function () {
-      var ids = songs.map(function (x) { return x.id; });
-      for (var k = ids.length - 1; k > 0; k--) { var j = Math.floor(Math.random() * (k + 1)); var x = ids[k]; ids[k] = ids[j]; ids[j] = x; }
-      playSongs(ids);
-      track("song_shuffle");
+
+    reshuffle();
+    playBtn.addEventListener("click", toggle);
+    nextBtn.addEventListener("click", next);
+    $("#songsShuffle").addEventListener("click", shuffleAll);
+    /* the pill under the page jumps to the player */
+    function showPlayer() { section.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" }); }
+    np.addEventListener("click", showPlayer);
+    np.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showPlayer(); } });
+    return { start: start };
+  })();
+
+  /* ================= Animated text: letters / words rise and un-blur ================= */
+  function splitText(el) {
+    var key = el.getAttribute("data-i18n");
+    var txt = key ? t(key) : (el.dataset.txt || (el.dataset.txt = el.textContent.trim()));
+    if (txt == null) return;
+    /* Gujarati letters join into clusters, so it animates by word, never by letter */
+    var letters = el.getAttribute("data-anim") === "letters" && lang !== "gu";
+    el.textContent = "";
+    var sr = document.createElement("span"); sr.className = "sr"; sr.textContent = txt; el.appendChild(sr);
+    var n = 0;
+    (letters ? Array.from(txt) : txt.split(/(\s+)/)).forEach(function (p) {
+      if (!p) return;
+      if (/^\s+$/.test(p)) { el.appendChild(document.createTextNode(p)); return; }
+      var s = document.createElement("span"); s.className = "ch"; s.setAttribute("aria-hidden", "true");
+      s.style.setProperty("--i", n++); s.textContent = p; el.appendChild(s);
     });
   }
+
+  /* ================= Scratch-to-reveal date and time (hero) ================= */
+  (function () {
+    var wrap = $("#scratch"), cv = $("#scratchFoil"), cx = cv.getContext("2d");
+    var dpr = Math.min(2, window.devicePixelRatio || 1), W = 0, H = 0, done = false, drawing = false, last = null, moves = 0;
+
+    function paint() {
+      var r = wrap.getBoundingClientRect();
+      if (!r.width || done) return;
+      W = cv.width = Math.round(r.width * dpr); H = cv.height = Math.round(r.height * dpr);
+      cx.globalCompositeOperation = "source-over";
+      var g = cx.createLinearGradient(0, 0, W, H);
+      g.addColorStop(0, "#cfa857"); g.addColorStop(0.3, "#f4e2ab"); g.addColorStop(0.55, "#c79b49"); g.addColorStop(0.8, "#ead08a"); g.addColorStop(1, "#bb8c3f");
+      cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+      cx.globalAlpha = 0.18; cx.strokeStyle = "#fff"; cx.lineWidth = dpr;
+      for (var x = -H; x < W; x += 9 * dpr) { cx.beginPath(); cx.moveTo(x, H); cx.lineTo(x + H, 0); cx.stroke(); }
+      cx.globalAlpha = 0.5; cx.fillStyle = "#fff";
+      for (var i = 0; i < 70; i++) { cx.beginPath(); cx.arc(Math.random() * W, Math.random() * H, (0.4 + Math.random() * 1.2) * dpr, 0, 6.283); cx.fill(); }
+      cx.globalAlpha = 1;
+    }
+    function reveal(via) {
+      if (done) return; done = true;
+      wrap.classList.add("revealed"); cv.setAttribute("aria-hidden", "true"); cv.tabIndex = -1;
+      track("date_revealed", { via: via });
+    }
+    function pt(e) { var r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) * W / r.width, y: (e.clientY - r.top) * H / r.height }; }
+    function cleared() {
+      var d = cx.getImageData(0, 0, W, H).data, n = 0, tot = 0;
+      for (var i = 3; i < d.length; i += 64) { tot++; if (d[i] < 128) n++; }
+      return n / tot;
+    }
+    function strike(p) {
+      cx.globalCompositeOperation = "destination-out"; cx.lineCap = "round"; cx.lineJoin = "round"; cx.lineWidth = 30 * dpr;
+      cx.beginPath(); cx.moveTo(last.x, last.y); cx.lineTo(p.x + 0.01, p.y); cx.stroke(); last = p;
+    }
+    cv.addEventListener("pointerdown", function (e) {
+      if (done) return; e.preventDefault(); drawing = true;
+      try { cv.setPointerCapture(e.pointerId); } catch (x) {} /* throws if the pointer is already gone; scratching still works */
+      wrap.classList.add("scratching"); last = pt(e); strike(last);
+    });
+    cv.addEventListener("pointermove", function (e) {
+      if (!drawing || done) return; strike(pt(e));
+      if (++moves % 6 === 0 && cleared() > 0.5) reveal("scratch");
+    });
+    function end() { if (!drawing) return; drawing = false; if (!done && cleared() > 0.5) reveal("scratch"); }
+    cv.addEventListener("pointerup", end); cv.addEventListener("pointercancel", end);
+    cv.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); reveal("key"); } });
+    if ("ResizeObserver" in window) new ResizeObserver(paint).observe(wrap); else paint();
+  })();
 
   /* ================= Petals (canvas) ================= */
   (function () {

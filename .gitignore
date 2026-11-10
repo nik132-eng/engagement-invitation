@@ -5,3 +5,7 @@ node_modules
 
 # full-size original photos (optimized copies live in assets/photos/)
 assets/image*.png
+
+# local run: RSVPs saved by `npm run dev`, and the example env file stays tracked
+.local-data/
+!.env.example

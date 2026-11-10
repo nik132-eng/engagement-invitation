@@ -42,14 +42,14 @@
   }
   </script>
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💍%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Dancing+Script:wght@500;700&family=Noto+Serif+Gujarati:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <!-- Vercel Web Analytics: private visitor counts, visible only in your Vercel dashboard -->
-  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="analytics.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <noscript><style>#splash{display:none!important}body.locked{overflow:auto!important}</style></noscript>
 </head>
@@ -67,7 +67,7 @@
     <div class="splash__inner">
       <p class="splash__kicker script" data-i18n="splashKicker">You are invited</p>
       <button id="openBtn" class="seal" type="button" aria-label="Open invitation">
-        <span class="seal__text">N<i>♥</i>A</span>
+        <img class="seal__logo" src="assets/logo-cream.svg" alt="" width="68" height="60">
       </button>
       <p class="splash__hint" data-i18n="tapOpen">Tap the seal to open</p>
     </div>
@@ -89,18 +89,18 @@
       <svg class="flourish flourish--br" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M5 5C5 5 20 10 30 25C40 40 35 55 25 60C15 65 10 55 15 45C20 35 35 30 45 35C55 40 50 55 40 60" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="30" cy="25" r="2" fill="currentColor"/><circle cx="25" cy="60" r="1.5" fill="currentColor"/></svg>
 
       <div class="hero__inner">
-        <svg class="rings" viewBox="0 0 120 70" fill="none" aria-hidden="true">
-          <circle class="rings__a" cx="46" cy="38" r="22"/>
-          <circle class="rings__b" cx="74" cy="38" r="22"/>
-          <path class="rings__gem" d="M60 4l7 8-7 9-7-9z"/>
-        </svg>
-        <p class="hero__intro script" data-i18n="intro"></p>
+        <img class="hero__logo" src="assets/logo-maroon.svg" alt="Nikunj and Ayushi monogram" width="110" height="98">
+        <p class="hero__intro script" data-anim="words" data-i18n="intro"></p>
         <h1 class="hero__title">
-          <span class="hero__name" data-i18n="groomName"></span>
+          <span class="hero__name" data-anim="letters" data-i18n="groomName"></span>
           <span class="hero__amp" aria-hidden="true">&amp;</span>
-          <span class="hero__name" data-i18n="brideName"></span>
+          <span class="hero__name" data-anim="letters" data-i18n="brideName"></span>
         </h1>
-        <p class="hero__date" id="heroDate"></p>
+        <div class="scratch" id="scratch">
+          <p class="hero__date" id="heroDate"></p>
+          <canvas class="scratch__foil" id="scratchFoil" role="button" tabindex="0"></canvas>
+          <span class="scratch__hint" data-i18n="scratchHint" aria-hidden="true"></span>
+        </div>
       </div>
 
       <a class="scroll-hint" href="#welcome" aria-label="Scroll down">
@@ -112,30 +112,33 @@
     <!-- WELCOME -->
     <section class="block block--narrow reveal" id="welcome">
       <div class="divider"><span></span><i>♥</i><span></span></div>
-      <p class="welcome" data-i18n="welcome"></p>
+      <p class="welcome" data-anim="words" data-i18n="welcome"></p>
       <div class="divider"><span></span><i>♥</i><span></span></div>
     </section>
 
     <!-- FAMILIES -->
     <section class="block reveal" id="families">
-      <h2 class="title script" data-i18n="familiesTitle"></h2>
+      <h2 class="title script" data-anim="words" data-i18n="familiesTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
+      <p class="families__line script" data-anim="words" data-i18n="familiesLine"></p>
       <div class="families">
         <article class="family">
           <h3 data-i18n="groomName"></h3>
-          <p data-i18n="groomParents"></p>
+          <p class="family__parents" data-i18n="groomParents"></p>
         </article>
         <p class="families__amp" aria-hidden="true">&amp;</p>
         <article class="family">
           <h3 data-i18n="brideName"></h3>
-          <p data-i18n="brideParents"></p>
+          <p class="family__parents" data-i18n="brideParents"></p>
         </article>
       </div>
+      <div class="divider"><span></span><i>♥</i><span></span></div>
+      <p class="families__blessing" data-i18n="familiesBlessing"></p>
     </section>
 
     <!-- DATE HEART -->
     <section class="block reveal" id="date">
-      <h2 class="title script" data-i18n="foreverTitle"></h2>
+      <h2 class="title script" data-anim="words" data-i18n="foreverTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
 
       <button class="heart" id="heartBtn" type="button" aria-label="Celebrate">
@@ -161,7 +164,7 @@
 
     <!-- COUNTDOWN -->
     <section class="block reveal" id="countdownSection">
-      <h2 class="title script" data-i18n="countTitle"></h2>
+      <h2 class="title script" data-anim="words" data-i18n="countTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <div class="count" id="count" role="timer" aria-live="off">
         <div class="unit"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="ring-bg" cx="40" cy="40" r="34"/><circle class="ring" id="r-d" cx="40" cy="40" r="34"/></svg><b id="cd-d">00</b><span data-i18n="days"></span></div>
@@ -172,19 +175,19 @@
       <p class="count__note" id="countNote"></p>
     </section>
 
-    <!-- SONGS (shown only when youtubeSongs are set in config.js) -->
+    <!-- SONGS: one playlist that plays by default (the list comes from youtubeSongs in config.js) -->
     <section class="block block--narrow reveal" id="songsSection" hidden>
-      <h2 class="title script" data-i18n="songsTitle"></h2>
+      <h2 class="title script" data-anim="words" data-i18n="songsTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <p class="songs__note" data-i18n="songsNote"></p>
-      <div class="songs__player" id="songsPlayer" hidden></div>
+      <div class="songs__player"><div id="ytMount"></div></div>
       <ol class="songs" id="songsList"></ol>
       <button class="btn btn--ghost" id="songsShuffle" type="button" data-i18n="songsShuffle"></button>
     </section>
 
     <!-- GALLERY (shown only when photos are set in config.js) -->
     <section class="block reveal" id="gallerySection" hidden>
-      <h2 class="title script" data-i18n="galleryTitle"></h2>
+      <h2 class="title script" data-anim="words" data-i18n="galleryTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <div class="gallery-wrap">
         <div class="gallery" id="gallery" tabindex="0" aria-label="Photo gallery"></div>
@@ -200,7 +203,7 @@
 
     <!-- PROGRAM -->
     <section class="block block--narrow reveal" id="program">
-      <h2 class="title script" data-i18n="programTitle"></h2>
+      <h2 class="title script" data-anim="words" data-i18n="programTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <p class="program__date" id="programDate"></p>
       <div class="program__row">
@@ -211,7 +214,7 @@
 
     <!-- VENUE + DISTANCE -->
     <section class="block block--narrow reveal" id="venue">
-      <h2 class="title script" data-i18n="venueTitle"></h2>
+      <h2 class="title script" data-anim="words" data-i18n="venueTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <p class="venue__name" id="venueName"></p>
       <p class="venue__addr" id="venueAddr"></p>
@@ -227,14 +230,14 @@
 
     <!-- GIFTS -->
     <section class="block block--narrow reveal" id="gifts">
-      <h2 class="title script" data-i18n="giftsTitle"></h2>
+      <h2 class="title script" data-anim="words" data-i18n="giftsTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <p class="plain" data-i18n="gifts"></p>
     </section>
 
     <!-- RSVP -->
     <section class="block block--narrow reveal" id="rsvp">
-      <h2 class="title script">RSVP</h2>
+      <h2 class="title script" data-anim="words">RSVP</h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
 
       <form class="form" id="rsvpForm" novalidate>
@@ -280,17 +283,18 @@
     <!-- CLOSING -->
     <section class="block block--narrow closing reveal">
       <div class="divider"><span></span><i>♥</i><span></span></div>
-      <p class="closing__line script" data-i18n="closing"></p>
-      <p class="closing__names script" data-i18n="signoff"></p>
+      <p class="closing__line script" data-anim="words" data-i18n="closing"></p>
+      <p class="closing__names script" data-anim="words" data-i18n="signoff"></p>
     </section>
   </main>
 
   <footer class="footer">
+    <img class="footer__logo" src="assets/logo-maroon.svg" alt="" width="36" height="32">
     <p data-i18n="footer"></p>
   </footer>
 
   <!-- Now playing + dock (mobile first) -->
-  <div class="nowplaying" id="nowPlaying" hidden>
+  <div class="nowplaying" id="nowPlaying" role="button" tabindex="0" title="Show the song list" hidden>
     <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
     <span id="npTitle"></span>
   </div>
@@ -309,7 +313,6 @@
     <a class="dock__rsvp" href="#rsvp" data-i18n="dockRsvp">RSVP</a>
   </nav>
 
-  <audio id="bgm" preload="none"></audio>
 
   <script src="config.js"></script>
   <script src="script.js"></script>

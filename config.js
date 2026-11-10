@@ -28,18 +28,11 @@ window.INVITE = {
   // Country code first, digits only, e.g. "919876543210". "" = no fallback.
   whatsapp: "",
 
-  // Background music.
-  // [] = a unique romantic piece is composed live for every visitor
-  //      (different key, tempo, chords and melody each time).
-  // Or list your own licensed / royalty-free files:
-  //   tracks: [{ title: "Song name", src: "assets/music/song1.mp3" }]
-  // A random track starts first, then the list plays in a shuffled order.
-  tracks: [],
-
-  // "Our favourite songs" card: official YouTube videos, played in a visible
-  // player only when a guest taps a song (background music pauses meanwhile).
-  // id = the part after "watch?v=" in the YouTube link. [] hides the card.
-  // group = heading the song is listed under.
+  // Music: these official YouTube songs play by default as one shuffled playlist, starting
+  // when a guest taps the wax seal. They are listed in the "Songs of Love" section
+  // (tap a song to play from it); the dock has play/pause and next.
+  // group = heading in the list, id = the part after "watch?v=" in the YouTube link.
+  // [] removes the section and the music.
   youtubeSongs: [
     { group: "Hindi", title: "Gehra Hua", film: "Dhurandhar · Arijit Singh", id: "GX9x62kFsVU" },
     { group: "Hindi", title: "Tum Ho Toh", film: "Saiyaara · Vishal Mishra", id: "rOUuGvJkBrQ" },

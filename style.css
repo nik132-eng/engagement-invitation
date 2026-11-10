@@ -73,8 +73,7 @@ html[lang="gu"] .splash__hint { font-family: var(--serif); letter-spacing: 0.02e
 @keyframes spin { to { --spin: 360deg; } }
 .seal:hover { transform: scale(1.05); }
 .seal:active { transform: scale(0.96); }
-.seal__text { font: 700 30px/1 var(--display); letter-spacing: 0.04em; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); }
-.seal__text i { font-style: normal; font-size: 16px; margin: 0 4px; color: #f1b5aa; }
+.seal__logo { width: 52%; height: auto; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35)); }
 
 /* ---------- fixed bits ---------- */
 .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 90; background: linear-gradient(90deg, var(--gold), var(--maroon)); transform: scaleX(0); transform-origin: left; }
@@ -147,33 +146,24 @@ body.opened .dock { translate: -50% 0; }
 .flourish--br { bottom: 32px; right: 32px; rotate: 180deg; }
 
 .hero__inner { position: relative; z-index: 4; display: grid; justify-items: center; gap: 4px; }
-.rings { width: 92px; height: auto; color: var(--maroon-soft); margin-bottom: 6px; overflow: visible; }
-.rings circle { stroke: currentColor; stroke-width: 2.2; stroke-dasharray: 140; stroke-dashoffset: 140; }
-.rings__b { stroke: var(--gold); }
-.rings__gem { fill: var(--gold); opacity: 0; transform-origin: 60px 12px; }
-.hero__intro { font-size: clamp(21px, 5.6vw, 32px); line-height: 1.35; white-space: pre-line; color: var(--maroon-soft); opacity: 0; }
+.hero__logo { width: clamp(72px, 22vw, 120px); height: auto; margin-bottom: 8px; opacity: 0; }
+@media (max-height: 700px) { .hero__logo { width: 64px; margin-bottom: 2px; } }
+.hero__intro { font-size: clamp(21px, 5.6vw, 32px); line-height: 1.35; white-space: pre-line; color: var(--maroon-soft); }
 .hero__title { display: grid; justify-items: center; gap: 0; margin: 8px 0 6px; font-weight: 600; translate: calc(var(--px) * -6px) calc(var(--py) * -6px); transition: translate 0.2s ease-out; }
 .hero__name {
   font-family: var(--display); font-size: clamp(46px, 16vw, 104px); line-height: 1.05; letter-spacing: 0.04em; color: var(--maroon);
-  text-shadow: 0 2px 14px rgba(255, 250, 240, 0.9); opacity: 0;
+  text-shadow: 0 2px 14px rgba(255, 250, 240, 0.9);
 }
 html[lang="gu"] .hero__name { font-family: var(--serif); letter-spacing: 0; }
 .hero__amp { font-family: var(--script); font-size: clamp(28px, 8vw, 48px); line-height: 1.2; color: var(--maroon-soft); opacity: 0; }
-.hero__date { font: 600 14px/1.4 var(--display); letter-spacing: 0.18em; text-transform: uppercase; color: var(--maroon); opacity: 0; }
+.hero__date { font: 600 14px/1.4 var(--display); letter-spacing: 0.18em; text-transform: uppercase; color: var(--maroon); }
 html[lang="gu"] .hero__date { font-family: var(--serif); letter-spacing: 0.02em; text-transform: none; font-size: 20px; }
 
-body.opened .rings circle { animation: draw 1.4s 0.5s ease forwards; }
-body.opened .rings__b { animation-delay: 0.9s; }
-body.opened .rings__gem { animation: gem 0.8s 1.9s ease forwards; }
-body.opened .hero__intro { animation: fadeUp 0.9s 0.9s ease forwards; }
-body.opened .hero__name { animation: nameIn 1.3s 1.2s cubic-bezier(.2, .8, .2, 1) forwards; }
-body.opened .hero__name:last-child { animation-delay: 1.7s; }
+body.opened .hero__logo { animation: logoIn 1.4s 0.35s cubic-bezier(.2, .8, .2, 1) forwards; }
 body.opened .hero__amp { animation: fadeUp 0.9s 1.5s ease forwards; }
-body.opened .hero__date { animation: fadeUp 0.9s 2.2s ease forwards; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes gem { 0% { opacity: 0; scale: 0.2; } 100% { opacity: 1; scale: 1; } }
+body.opened .scratch { animation: fadeUp 0.9s 2.4s ease forwards; }
+@keyframes logoIn { from { opacity: 0; scale: 0.82; filter: blur(8px); } to { opacity: 1; scale: 1; filter: blur(0); } }
 @keyframes fadeUp { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
-@keyframes nameIn { from { opacity: 0; filter: blur(14px); letter-spacing: 0.3em; } to { opacity: 1; filter: blur(0); } }
 
 .scroll-hint {
   position: absolute; bottom: calc(var(--dock-h) + 64px + env(safe-area-inset-bottom)); left: 0; right: 0; z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 4px;
@@ -203,7 +193,11 @@ html[lang="gu"] .scroll-hint { font-family: var(--serif); letter-spacing: 0.02em
 .families { display: grid; gap: 14px; justify-items: center; }
 .family h3 { font-family: var(--display); font-weight: 600; font-size: 22px; letter-spacing: 0.06em; color: var(--maroon); }
 html[lang="gu"] .family h3 { font-family: var(--serif); letter-spacing: 0; font-size: 25px; }
+.family h3::after { content: ""; display: block; width: 44px; height: 1px; margin: 8px auto 10px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
 .family p { max-width: 28ch; margin: 4px auto 0; font-size: 20px; font-style: italic; }
+.family__parents { white-space: pre-line; line-height: 1.75; }
+.families__line { margin-bottom: 26px; font-size: clamp(26px, 7vw, 36px); line-height: 1.35; white-space: pre-line; color: var(--maroon-soft); }
+.families__blessing { max-width: 34ch; margin: 0 auto; font-size: 20px; line-height: 1.7; font-style: italic; white-space: pre-line; color: var(--maroon-soft); }
 .families__amp { font-family: var(--script); font-size: 34px; color: var(--maroon-soft); }
 
 /* heart */
@@ -294,9 +288,9 @@ html[lang="gu"] .dist__out { font-family: var(--serif); }
 .dist__out:empty { display: none; }
 .dist__note { margin-top: 12px; font-size: 15px; opacity: 0.8; }
 
-/* songs (YouTube) */
+/* songs (YouTube playlist) */
 .songs__note { margin-bottom: 18px; font-size: 17px; opacity: 0.85; }
-.songs__player { position: relative; margin-bottom: 18px; aspect-ratio: 16 / 9; min-height: 200px; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 16px 36px -18px rgba(60, 25, 18, 0.6); }
+.songs__player { position: relative; margin-bottom: 18px; width: 100%; height: clamp(200px, calc((100vw - 48px) * 0.5625), 277px); /* 16:9, never under 200px tall */ border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 16px 36px -18px rgba(60, 25, 18, 0.6); }
 .songs__player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .songs {
   display: grid; gap: 8px; max-height: min(460px, 62vh); margin: 0 0 20px; padding: 2px 6px 2px 2px; list-style: none; text-align: left;
@@ -315,6 +309,7 @@ html[lang="gu"] .dist__out { font-family: var(--serif); }
 .songs button[aria-current="true"] .songs__icon { background: color-mix(in srgb, var(--cream) 22%, transparent); }
 .songs__title { display: block; font-weight: 600; line-height: 1.2; }
 .songs__film { display: block; font-size: 15px; opacity: 0.75; }
+.nowplaying { cursor: pointer; }
 
 /* RSVP */
 .form { display: grid; gap: 18px; text-align: left; }
@@ -347,14 +342,46 @@ html[lang="gu"] .dist__out { font-family: var(--serif); }
 /* closing + footer */
 .closing__line { font-size: clamp(30px, 7.5vw, 46px); line-height: 1.35; color: var(--maroon); }
 .closing__names { margin-top: 12px; font-size: 28px; color: var(--maroon-soft); }
+.footer__logo { display: block; width: 34px; height: auto; margin: 0 auto 10px; }
 .footer { position: relative; z-index: 4; padding: 30px 24px 16px; text-align: center; font-size: 15px; border-top: 1px solid var(--line); opacity: 0.8; }
+
+/* ---------- scratch to reveal the date ---------- */
+.scratch { position: relative; display: grid; place-items: center; min-width: min(320px, 84vw); margin-top: 14px; border-radius: 16px; opacity: 0; }
+.scratch .hero__date { padding: 16px 26px; }
+.scratch__foil {
+  position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 16px; cursor: grab; touch-action: none;
+  box-shadow: 0 8px 22px -10px rgba(60, 25, 18, 0.6); transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.scratch__hint {
+  position: absolute; inset: 0; display: grid; place-items: center; padding: 0 12px; text-align: center; pointer-events: none;
+  font: 700 11px/1.35 var(--display); letter-spacing: 0.16em; text-transform: uppercase; color: #4d2c10; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  animation: pulse 2.2s ease-in-out infinite; transition: opacity 0.3s;
+}
+html[lang="gu"] .scratch__hint { font-family: var(--serif); letter-spacing: 0.02em; text-transform: none; font-size: 16px; }
+.scratch.scratching .scratch__hint { opacity: 0; animation: none; }
+.scratch.revealed .scratch__foil { opacity: 0; transform: scale(1.04); pointer-events: none; }
+.scratch.revealed .scratch__hint { display: none; }
+
+/* ---------- animated text: letters / words rise and un-blur ---------- */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.ch { display: inline-block; opacity: 0; }
+@keyframes chIn { from { opacity: 0; translate: 0 0.55em; scale: 0.92; filter: blur(10px); } to { opacity: 1; translate: 0 0; scale: 1; filter: blur(0); } }
+@keyframes sheen { 0% { background-position: 100% 0; } 55%, 100% { background-position: 0 0; } }
+body.opened .hero__intro .ch { animation: chIn 0.9s cubic-bezier(.2, .8, .2, 1) forwards; animation-delay: calc(0.9s + var(--i) * 85ms); }
+.hero__name .ch {
+  background: linear-gradient(100deg, var(--maroon) 40%, #d9a95a 50%, var(--maroon) 60%) 100% 0 / 250% 100% no-repeat;
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; text-shadow: none;
+}
+body.opened .hero__name .ch { animation: chIn 1s cubic-bezier(.2, .8, .2, 1) forwards, sheen 5.5s ease-in-out infinite; animation-delay: calc(1.2s + var(--i) * 110ms), calc(2.6s + var(--i) * 150ms); }
+body.opened .hero__name:last-child .ch { animation-delay: calc(1.8s + var(--i) * 110ms), calc(3.2s + var(--i) * 150ms); }
+.reveal.in .ch { animation: chIn 0.8s cubic-bezier(.2, .8, .2, 1) forwards; animation-delay: calc(0.15s + var(--i) * 70ms); }
 
 /* ---------- larger screens ---------- */
 @media (min-width: 768px) {
   body { font-size: 21px; }
   .flourish { width: 130px; height: 130px; }
   .seal { width: 150px; height: 150px; }
-  .rings { width: 120px; }
+  .hero__logo { width: 140px; }
   .block { padding: 84px 32px; }
   .heart { width: 300px; }
   .nowplaying { font-size: 17px; }
@@ -371,4 +398,8 @@ html[lang="gu"] .dist__out { font-family: var(--serif); }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
   .reveal { opacity: 1; transform: none; }
   #petals { display: none; }
+  .ch { opacity: 1 !important; animation: none !important; filter: none; }
+  .hero__name .ch { background: none; -webkit-text-fill-color: currentColor; color: var(--maroon); }
+  .scratch { opacity: 1; animation: none !important; }
+  .hero__logo { opacity: 1; animation: none !important; }
 }
