@@ -3,19 +3,57 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Nikunj &amp; Ayushi | Engagement Invitation</title>
-  <meta name="description" content="You are invited to the engagement of Nikunj &amp; Ayushi on 12 December 2026.">
-  <meta property="og:title" content="Nikunj &amp; Ayushi | Engagement Invitation">
-  <meta property="og:description" content="Join us to celebrate our engagement on 12 December 2026.">
-  <meta property="og:type" content="website">
+  <title>Nikunj &amp; Ayushi Engagement Invitation | 12 December 2026</title>
+  <meta name="description" content="You are warmly invited to the engagement of Nikunj Rohit &amp; Ayushi Andhariya on 12 December 2026 at 4:30 PM. See the venue, countdown and RSVP online.">
+  <meta name="keywords" content="Nikunj, Ayushi, engagement invitation, ring ceremony, 12 December 2026, Rohit family, Andhariya family, Gujarati invitation">
+  <meta name="author" content="Rohit &amp; Andhariya families">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#71352b">
+  <meta name="color-scheme" content="light">
+
+  <!-- Social previews. TODO: replace REPLACE-WITH-YOUR-DOMAIN with the live domain after the first deploy. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nikunj &amp; Ayushi">
+  <meta property="og:title" content="Nikunj &amp; Ayushi | Engagement Invitation">
+  <meta property="og:description" content="Join us to celebrate our engagement on 12 December 2026 at 4:30 PM.">
+  <meta property="og:image" content="https://REPLACE-WITH-YOUR-DOMAIN/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Nikunj and Ayushi engagement invitation, 12 December 2026">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nikunj &amp; Ayushi | Engagement Invitation">
+  <meta name="twitter:description" content="Join us to celebrate our engagement on 12 December 2026 at 4:30 PM.">
+  <meta name="twitter:image" content="https://REPLACE-WITH-YOUR-DOMAIN/assets/og-image.png">
+
+  <script type="application/ld+json" id="ld">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Engagement of Nikunj & Ayushi",
+    "description": "Engagement ceremony of Nikunj Rohit and Ayushi Andhariya, hosted by the Rohit and Andhariya families.",
+    "startDate": "2026-12-12T16:30:00+05:30",
+    "endDate": "2026-12-12T20:30:00+05:30",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "isAccessibleForFree": true,
+    "inLanguage": ["en", "gu"],
+    "location": { "@type": "Place", "name": "Engagement venue", "address": { "@type": "PostalAddress", "addressCountry": "IN" } },
+    "organizer": { "@type": "Organization", "name": "Rohit and Andhariya families" }
+  }
+  </script>
+
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💍%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Dancing+Script:wght@500;700&family=Noto+Serif+Gujarati:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Dancing+Script:wght@500;700&family=Noto+Serif+Gujarati:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Vercel Web Analytics: private visitor counts, visible only in your Vercel dashboard -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <noscript><style>#splash{display:none!important}body.locked{overflow:auto!important}</style></noscript>
 </head>
-<body>
+<body class="locked">
   <svg width="0" height="0" aria-hidden="true" style="position:absolute">
     <defs>
       <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
@@ -24,28 +62,45 @@
     </defs>
   </svg>
 
-  <button id="langBtn" class="float-btn float-btn--left" type="button" aria-label="Change language">
+  <!-- Opening splash: the tap also unlocks background music -->
+  <div id="splash" role="dialog" aria-modal="true" aria-label="Open the invitation">
+    <div class="splash__inner">
+      <p class="splash__kicker script" data-i18n="splashKicker">You are invited</p>
+      <button id="openBtn" class="seal" type="button" aria-label="Open invitation">
+        <span class="seal__text">N<i>♥</i>A</span>
+      </button>
+      <p class="splash__hint" data-i18n="tapOpen">Tap the seal to open</p>
+    </div>
+  </div>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <canvas id="petals" aria-hidden="true"></canvas>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <button id="langBtn" class="lang" type="button" aria-label="Change language">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
     <span id="langLabel">ગુજરાતી</span>
-  </button>
-  <button id="musicBtn" class="float-btn float-btn--right" type="button" aria-label="Toggle music" hidden>
-    <span id="musicIcon">♪</span>
   </button>
 
   <main>
     <!-- HERO -->
     <section class="hero" id="top">
-      <div class="hearts" id="hearts" aria-hidden="true"></div>
       <svg class="flourish flourish--tl" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M5 5C5 5 20 10 30 25C40 40 35 55 25 60C15 65 10 55 15 45C20 35 35 30 45 35C55 40 50 55 40 60" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="30" cy="25" r="2" fill="currentColor"/><circle cx="25" cy="60" r="1.5" fill="currentColor"/></svg>
       <svg class="flourish flourish--br" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M5 5C5 5 20 10 30 25C40 40 35 55 25 60C15 65 10 55 15 45C20 35 35 30 45 35C55 40 50 55 40 60" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="30" cy="25" r="2" fill="currentColor"/><circle cx="25" cy="60" r="1.5" fill="currentColor"/></svg>
 
       <div class="hero__inner">
-        <p class="hero__heart" aria-hidden="true">♥</p>
+        <svg class="rings" viewBox="0 0 120 70" fill="none" aria-hidden="true">
+          <circle class="rings__a" cx="46" cy="38" r="22"/>
+          <circle class="rings__b" cx="74" cy="38" r="22"/>
+          <path class="rings__gem" d="M60 4l7 8-7 9-7-9z"/>
+        </svg>
         <p class="hero__intro script" data-i18n="intro"></p>
-        <div class="divider divider--sm"><span></span><i>♥</i><span></span></div>
-        <h1 class="hero__name" data-i18n="groomName"></h1>
-        <p class="hero__amp" aria-hidden="true">&amp;</p>
-        <h1 class="hero__name" data-i18n="brideName"></h1>
+        <h1 class="hero__title">
+          <span class="hero__name" data-i18n="groomName"></span>
+          <span class="hero__amp" aria-hidden="true">&amp;</span>
+          <span class="hero__name" data-i18n="brideName"></span>
+        </h1>
+        <p class="hero__date" id="heroDate"></p>
       </div>
 
       <a class="scroll-hint" href="#welcome" aria-label="Scroll down">
@@ -57,7 +112,7 @@
     <!-- WELCOME -->
     <section class="block block--narrow reveal" id="welcome">
       <div class="divider"><span></span><i>♥</i><span></span></div>
-      <p class="welcome script" data-i18n="welcome"></p>
+      <p class="welcome" data-i18n="welcome"></p>
       <div class="divider"><span></span><i>♥</i><span></span></div>
     </section>
 
@@ -104,24 +159,25 @@
       </div>
     </section>
 
+    <!-- COUNTDOWN -->
+    <section class="block reveal" id="countdownSection">
+      <h2 class="title script" data-i18n="countTitle"></h2>
+      <div class="divider"><span></span><i>♥</i><span></span></div>
+      <div class="count" id="count" role="timer" aria-live="off">
+        <div class="unit"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="ring-bg" cx="40" cy="40" r="34"/><circle class="ring" id="r-d" cx="40" cy="40" r="34"/></svg><b id="cd-d">00</b><span data-i18n="days"></span></div>
+        <div class="unit"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="ring-bg" cx="40" cy="40" r="34"/><circle class="ring" id="r-h" cx="40" cy="40" r="34"/></svg><b id="cd-h">00</b><span data-i18n="hours"></span></div>
+        <div class="unit"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="ring-bg" cx="40" cy="40" r="34"/><circle class="ring" id="r-m" cx="40" cy="40" r="34"/></svg><b id="cd-m">00</b><span data-i18n="minutes"></span></div>
+        <div class="unit"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="ring-bg" cx="40" cy="40" r="34"/><circle class="ring" id="r-s" cx="40" cy="40" r="34"/></svg><b id="cd-s">00</b><span data-i18n="seconds"></span></div>
+      </div>
+      <p class="count__note" id="countNote"></p>
+    </section>
+
     <!-- GALLERY (shown only when photos are set in config.js) -->
     <section class="block reveal" id="gallerySection" hidden>
       <h2 class="title script" data-i18n="galleryTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <div class="gallery" id="gallery" tabindex="0" aria-label="Photo gallery"></div>
       <div class="dots" id="dots" aria-hidden="true"></div>
-    </section>
-
-    <!-- COUNTDOWN -->
-    <section class="block reveal" id="countdownSection">
-      <h2 class="title script" data-i18n="countTitle"></h2>
-      <div class="divider"><span></span><i>♥</i><span></span></div>
-      <div class="count" id="count" role="timer" aria-live="off">
-        <div><b id="cd-d">00</b><span data-i18n="days"></span></div>
-        <div><b id="cd-h">00</b><span data-i18n="hours"></span></div>
-        <div><b id="cd-m">00</b><span data-i18n="minutes"></span></div>
-        <div><b id="cd-s">00</b><span data-i18n="seconds"></span></div>
-      </div>
     </section>
 
     <!-- PROGRAM -->
@@ -135,13 +191,20 @@
       </div>
     </section>
 
-    <!-- VENUE -->
+    <!-- VENUE + DISTANCE -->
     <section class="block block--narrow reveal" id="venue">
       <h2 class="title script" data-i18n="venueTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <p class="venue__name" id="venueName"></p>
       <p class="venue__addr" id="venueAddr"></p>
       <a class="btn" id="mapBtn" target="_blank" rel="noopener" data-i18n="directions"></a>
+
+      <div class="dist" id="distCard" hidden>
+        <p class="dist__title" data-i18n="distTitle"></p>
+        <p class="dist__out" id="distOut" aria-live="polite"></p>
+        <button class="btn btn--ghost" id="distBtn" type="button" data-i18n="distBtn"></button>
+        <p class="dist__note" data-i18n="distNote"></p>
+      </div>
     </section>
 
     <!-- GIFTS -->
@@ -151,26 +214,49 @@
       <p class="plain" data-i18n="gifts"></p>
     </section>
 
-    <!-- RSVP (shown only when a WhatsApp number is set in config.js) -->
-    <section class="block block--narrow reveal" id="rsvp" hidden>
+    <!-- RSVP -->
+    <section class="block block--narrow reveal" id="rsvp">
       <h2 class="title script">RSVP</h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
-      <form class="form" id="rsvpForm">
-        <label><span data-i18n="fName"></span>
-          <input name="name" required autocomplete="name">
+
+      <form class="form" id="rsvpForm" novalidate>
+        <label class="field"><span data-i18n="fName"></span>
+          <input name="name" id="fName" required maxlength="80" autocomplete="name">
         </label>
-        <label><span data-i18n="fAttend"></span>
-          <select name="attend" required>
-            <option value="" data-i18n="fSelect"></option>
-            <option value="yes" data-i18n="fYes"></option>
-            <option value="no" data-i18n="fNo"></option>
-          </select>
+
+        <fieldset class="field">
+          <legend data-i18n="fAttend"></legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="attend" value="yes" checked><span data-i18n="fYes"></span></label>
+            <label class="chip"><input type="radio" name="attend" value="no"><span data-i18n="fNo"></span></label>
+          </div>
+        </fieldset>
+
+        <div class="field" id="guestsField">
+          <span data-i18n="fGuests"></span>
+          <div class="stepper">
+            <button type="button" id="gMinus" aria-label="Fewer guests">−</button>
+            <output id="gOut">1</output>
+            <button type="button" id="gPlus" aria-label="More guests">+</button>
+          </div>
+        </div>
+
+        <label class="field"><span data-i18n="fMsg"></span>
+          <textarea name="message" rows="3" maxlength="300"></textarea>
         </label>
-        <label><span data-i18n="fMsg"></span>
-          <textarea name="msg" rows="3"></textarea>
-        </label>
-        <button class="btn btn--full" type="submit" data-i18n="fSend"></button>
+
+        <!-- spam trap: real people never see or fill this -->
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <p class="form__error" id="formError" role="alert" hidden></p>
+        <button class="btn btn--full" id="sendBtn" type="submit" data-i18n="fSend"></button>
       </form>
+
+      <div class="thanks" id="thanks" hidden>
+        <p class="thanks__title script" id="thanksTitle"></p>
+        <p id="thanksSub"></p>
+        <button class="linkbtn" id="editRsvp" type="button" data-i18n="fEdit"></button>
+      </div>
     </section>
 
     <!-- CLOSING -->
@@ -185,8 +271,27 @@
     <p data-i18n="footer"></p>
   </footer>
 
-  <canvas id="confetti" aria-hidden="true"></canvas>
-  <audio id="bgm" loop preload="none"></audio>
+  <!-- Now playing + dock (mobile first) -->
+  <div class="nowplaying" id="nowPlaying" hidden>
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span id="npTitle"></span>
+  </div>
+
+  <nav class="dock" id="dock" aria-label="Quick actions">
+    <button id="playBtn" type="button" aria-label="Play or pause music" aria-pressed="false">
+      <svg id="icPlay" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="icPause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
+    <button id="nextBtn" type="button" aria-label="Next song">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 6l9 6-9 6zM16 6h2v12h-2z"/></svg>
+    </button>
+    <a id="dockMap" href="#venue" aria-label="Venue and directions">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+    </a>
+    <a class="dock__rsvp" href="#rsvp" data-i18n="dockRsvp">RSVP</a>
+  </nav>
+
+  <audio id="bgm" preload="none"></audio>
 
   <script src="config.js"></script>
   <script src="script.js"></script>

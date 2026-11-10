@@ -1,0 +1,9 @@
+{
+  "name": "engagement-invitation",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Engagement invitation for Nikunj & Ayushi",
+  "dependencies": {
+    "@vercel/blob": "^1.1.1"
+  }
+}
