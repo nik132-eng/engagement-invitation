@@ -5,7 +5,7 @@
    Abuse protection: same-origin only, JSON only, size cap, honeypot, minimum fill time,
    link-spam filter and per-IP / global rate limits. */
 const crypto = require("crypto");
-const { ACCESS, clientIp, allow, retryAfter, sameOrigin, localEnabled, localStore } = require("./_lib");
+const { blobCall, clientIp, allow, retryAfter, sameOrigin, localEnabled, localStore } = require("./_lib");
 
 const clean = (v, n) => String(v == null ? "" : v).replace(/[\u0000-\u001f\u007f<>]/g, " ").replace(/\s+/g, " ").trim().slice(0, n);
 /* stops spreadsheet formula injection if the RSVPs are ever exported to CSV / Excel */
@@ -65,11 +65,8 @@ module.exports = async (req, res) => {
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     try {
       const { put } = require("@vercel/blob");
-      await put("rsvp/" + rec.at.replace(/[:.]/g, "-") + "-" + rec.id + ".json", JSON.stringify(rec), {
-        access: ACCESS,
-        contentType: "application/json",
-        addRandomSuffix: true
-      });
+      const pathname = "rsvp/" + rec.at.replace(/[:.]/g, "-") + "-" + rec.id + ".json";
+      await blobCall((access) => put(pathname, JSON.stringify(rec), { access, contentType: "application/json", addRandomSuffix: true }));
     } catch (e) {
       console.error("RSVP blob write failed: " + e.message);
     }

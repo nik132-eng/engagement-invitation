@@ -5,7 +5,7 @@
    characters (for example: openssl rand -base64 32). Without a strong key set, this
    endpoint is disabled. Repeated wrong keys are blocked for 15 minutes. */
 const crypto = require("crypto");
-const { ACCESS, clientIp, recent, record, retryAfter, localEnabled, localStore } = require("./_lib");
+const { blobCall, blobAccess, clientIp, recent, record, retryAfter, localEnabled, localStore } = require("./_lib");
 
 const MIN_KEY = 20, FAIL_LIMIT = 5, FAIL_WINDOW = 15 * 60e3;
 const sha = (s) => crypto.createHash("sha256").update(String(s)).digest();
@@ -32,6 +32,8 @@ module.exports = async (req, res) => {
 
   const auth = String(req.headers.authorization || "");
   const given = req.headers["x-admin-key"] || (auth.startsWith("Bearer ") ? auth.slice(7) : "") || (req.query && req.query.key) || "";
+  /* a request with no key at all is not a guess, so it is refused without counting toward the lockout */
+  if (!given) return send(res, 401, { ok: false, error: "unauthorized" });
   if (!same(given, key)) {
     record(failKey);
     await sleep(400);
@@ -55,7 +57,7 @@ module.exports = async (req, res) => {
 
       const read = async (b) => {
         try {
-          const r = await get(b.pathname, { access: ACCESS });
+          const r = await blobCall((access) => get(b.pathname, { access }));
           return r && r.stream ? JSON.parse(await new Response(r.stream).text()) : null;
         } catch (e) { return null; }
       };
@@ -66,6 +68,7 @@ module.exports = async (req, res) => {
     const dists = yes.map((r) => r.distanceKm).filter((d) => typeof d === "number");
     return send(res, 200, {
       ok: true,
+      storage: useLocal ? "local" : blobAccess() || "empty store",
       totals: {
         replies: rows.length,
         attending: yes.length,

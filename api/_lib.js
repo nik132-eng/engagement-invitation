@@ -19,6 +19,20 @@ const localStore = {
    Set BLOB_ACCESS=public in Vercel only if the connected Blob store was created as public. */
 const ACCESS = process.env.BLOB_ACCESS === "public" ? "public" : "private";
 
+/* A Blob store is either private or public, and calls must say which. Try the preferred mode first and,
+   if the store turns out to be the other kind, switch and remember it. blobAccess() reports what worked. */
+let working = null;
+async function blobCall(fn) {
+  const order = working ? [working] : [ACCESS, ACCESS === "private" ? "public" : "private"];
+  let lastErr;
+  for (const access of order) {
+    try { const result = await fn(access); working = access; return result; }
+    catch (e) { lastErr = e; if (!/access|private|public/i.test(String((e && e.message) || ""))) break; }
+  }
+  throw lastErr;
+}
+const blobAccess = () => working;
+
 const clientIp = (req) =>
   String(req.headers["x-real-ip"] || req.headers["x-forwarded-for"] || (req.socket && req.socket.remoteAddress) || "unknown")
     .split(",")[0].trim();
@@ -67,4 +81,4 @@ function sameOrigin(req) {
   try { return new URL(req.headers.origin).host === host; } catch (e) { return false; }
 }
 
-module.exports = { ACCESS, clientIp, recent, record, allow, retryAfter, safeHost, sameOrigin, localEnabled, localStore };
+module.exports = { ACCESS, blobCall, blobAccess, clientIp, recent, record, allow, retryAfter, safeHost, sameOrigin, localEnabled, localStore };

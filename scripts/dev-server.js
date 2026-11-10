@@ -3,6 +3,7 @@
    - runs the api/*.js functions (RSVP, admin, sitemap, robots) and the vercel.json rewrites
    - reads .env.local (git-ignored) for ADMIN_KEY and friends
    - saves RSVPs to .local-data/rsvp.jsonl instead of Vercel Blob (so /api/admin works offline)
+   - npm run dev:blob  uses the real Vercel Blob store instead (token from .env.blob)
    Options: PORT=4000 npm run dev      HOST=0.0.0.0 npm run dev   (to open it from your phone on the same Wi-Fi) */
 const http = require("http"), fs = require("fs"), path = require("path"), url = require("url");
 
@@ -22,7 +23,20 @@ function loadEnv(file) {
 }
 loadEnv(path.join(ROOT, ".env.local"));
 loadEnv(path.join(ROOT, ".env"));
-process.env.LOCAL_DEV = "1"; /* switches api/_lib.js to the local RSVP file */
+
+/* Default: everything stays on this computer. With --blob (npm run dev:blob) the site uses the REAL
+   Vercel Blob store from .env.blob, the same one the live site writes to. */
+const useBlob = process.argv.includes("--blob");
+if (useBlob) {
+  loadEnv(path.join(ROOT, ".env.blob"));
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error("No BLOB_READ_WRITE_TOKEN found. Copy .env.blob.example to .env.blob and paste your token in (see the README).");
+    process.exit(1);
+  }
+} else {
+  delete process.env.BLOB_READ_WRITE_TOKEN; delete process.env.BLOB_STORE_ID; /* never touch real data by accident */
+  process.env.LOCAL_DEV = "1"; /* switches api/_lib.js to the local RSVP file */
+}
 
 const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, "vercel.json"), "utf8"));
 const types = {
@@ -80,5 +94,8 @@ http.createServer((req, res) => {
   fs.createReadStream(target).pipe(res);
 }).listen(PORT, HOST, () => {
   console.log("Invitation running at http://" + (HOST === "0.0.0.0" ? "localhost" : HOST) + ":" + PORT);
+  console.log(useBlob
+    ? "Storage: the REAL Vercel Blob store. RSVPs sent from this page are real records: delete test ones afterwards."
+    : "Storage: local file .local-data/rsvp.jsonl (nothing leaves this computer).");
   console.log(process.env.ADMIN_KEY ? "ADMIN_KEY loaded from .env.local: run `npm run admin` to see RSVPs." : "No ADMIN_KEY found: copy .env.example to .env.local to enable /api/admin.");
 });

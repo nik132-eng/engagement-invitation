@@ -41,7 +41,40 @@ Notes for local runs:
    If you create a *Public* store instead, also add the env var `BLOB_ACCESS=public`.
 4. Settings -> Environment Variables -> add `ADMIN_KEY`: **at least 20 random characters**
    (generate one with `openssl rand -base64 32`). Then redeploy. A short key is refused.
-5. Replace `REPLACE-WITH-YOUR-DOMAIN` in `index.html` (2 places) with your live domain.
+5. `index.html` already uses https://nikunj-ayushi-engagement-invitation.vercel.app for the share preview
+   (2 places). If you add a custom domain later, change it there.
+6. Changes to environment variables only apply to **new** deployments, so redeploy after editing them.
+
+## Test with your real Blob store from your computer
+`npm run dev` keeps everything on your computer (RSVPs go to `.local-data/`). To run the site locally
+against the real Vercel Blob store instead, the same one the live site writes to:
+1. In Vercel -> Storage -> your Blob store, find `BLOB_STORE_ID` and `BLOB_READ_WRITE_TOKEN` (the
+   ".env.local" tab shows both lines).
+2. `cp .env.blob.example .env.blob` and paste the two values in. `.env.blob` is git-ignored. Never commit
+   the token or paste it into a chat; if it ever leaks, regenerate it in Vercel.
+3. `npm run dev:blob`, then open http://localhost:3000. The start-up banner says "REAL Vercel Blob store".
+   RSVPs sent from this page are real records in the store, so delete test ones afterwards.
+4. `npm run admin` lists what is in the store (it sends the `ADMIN_KEY` from `.env.local`).
+
+The API works with a Private or a Public store: it tries Private first, and `/api/admin` reports what it
+found in `storage`. Private is the safer choice, because guests' names and messages can then not be read
+by URL.
+
+## Check the live site
+`npm run check` runs a read-only smoke test against https://nikunj-ayushi-engagement-invitation.vercel.app:
+the page and share preview, security headers, robots/sitemap, files that must stay private, and that the
+RSVP and admin endpoints refuse bad requests. It never saves an RSVP.
+- Another address: `npm run check -- https://your-domain`
+- Also prove your live admin key works and Blob is connected:
+  `ADMIN_KEY='your live key' npm run check` (the key is read from your shell only, never from `.env.local`,
+  because that one is for local runs)
+- By hand: `curl -H "x-admin-key: YOUR_LIVE_KEY" https://nikunj-ayushi-engagement-invitation.vercel.app/api/admin`
+
+Reading the admin result:
+- `401 unauthorized`: the key does not match the `ADMIN_KEY` on Vercel.
+- `503 ADMIN_KEY is not set` / `must be at least 20 characters`: fix the environment variable, then redeploy.
+- `503 No Blob store connected`: Vercel -> Storage -> connect the store to this project, then redeploy.
+- `200` with `"ok": true`: all good. `storage` says `private` or `public`.
 
 ## Developer-only views
 - Visitors: Vercel dashboard -> Analytics

@@ -9,3 +9,4 @@ assets/image*.png
 # local run: RSVPs saved by `npm run dev`, and the example env file stays tracked
 .local-data/
 !.env.example
+!.env.blob.example
