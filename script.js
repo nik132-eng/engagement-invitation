@@ -22,6 +22,7 @@
       countTitle: "Counting down", days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds",
       countBefore: "until our engagement ceremony begins", countLive: "It's today. The celebration is on! 💍", countAfter: "Thank you for celebrating with us 💓",
       galleryTitle: "Our Moments",
+      songsTitle: "Our Favourite Songs", songsNote: "Tap a song to play it here. The background music pauses meanwhile.", songsShuffle: "Shuffle all songs",
       programTitle: "Program", event: "Engagement Ceremony",
       venueTitle: "Venue", directions: "Get Directions",
       distTitle: "How far are you?", distBtn: "Show my distance",
@@ -50,6 +51,7 @@
       countTitle: "ગણતરી ચાલુ છે", days: "દિવસ", hours: "કલાક", minutes: "મિનિટ", seconds: "સેકન્ડ",
       countBefore: "અમારા સગાઈ સમારોહ શરૂ થવામાં", countLive: "આજે જ છે. ઉજવણી ચાલુ છે! 💍", countAfter: "અમારી સાથે ઉજવણી કરવા બદલ આભાર 💓",
       galleryTitle: "અમારી યાદો",
+      songsTitle: "અમારાં મનગમતાં ગીતો", songsNote: "ગીત પર ટેપ કરો અને અહીં જ સાંભળો. એ દરમિયાન બેકગ્રાઉન્ડ મ્યુઝિક થોભી જશે.", songsShuffle: "બધાં ગીતો શફલ કરો",
       programTitle: "કાર્યક્રમ", event: "સગાઈ સમારોહ",
       venueTitle: "સ્થળ", directions: "દિશા મેળવો",
       distTitle: "તમે કેટલા દૂર છો?", distBtn: "મારું અંતર બતાવો",
@@ -232,14 +234,22 @@
     var g = $("#gallery"), dots = $("#dots");
     C.photos.forEach(function (src, i) {
       var f = document.createElement("figure"), im = document.createElement("img");
-      im.src = src; im.alt = "Nikunj & Ayushi, photo " + (i + 1); im.loading = "lazy"; im.decoding = "async";
+      im.src = src; im.alt = "Nikunj & Ayushi, photo " + (i + 1); im.loading = i ? "lazy" : "eager"; im.decoding = "async";
+      im.width = 1080; im.height = 1440;
       f.appendChild(im); g.appendChild(f);
       var dot = document.createElement("i"); if (!i) dot.className = "on"; dots.appendChild(dot);
     });
-    g.addEventListener("scroll", function () {
-      var i = Math.round(g.scrollLeft / g.clientWidth);
+    var prev = $("#galPrev"), nextP = $("#galNext"), n = C.photos.length;
+    var cur = function () { return Math.round(g.scrollLeft / g.clientWidth); };
+    function syncGallery() {
+      var i = cur();
       [].forEach.call(dots.children, function (d, k) { d.className = k === i ? "on" : ""; });
-    }, { passive: true });
+      prev.disabled = i <= 0; nextP.disabled = i >= n - 1;
+    }
+    g.addEventListener("scroll", syncGallery, { passive: true });
+    prev.addEventListener("click", function () { g.scrollTo({ left: (cur() - 1) * g.clientWidth }); });
+    nextP.addEventListener("click", function () { g.scrollTo({ left: (cur() + 1) * g.clientWidth }); });
+    syncGallery();
   }
 
   /* ================= RSVP ================= */
@@ -426,14 +436,59 @@
       else { wantPlay = true; mode === "files" ? audio.play().then(function () { ui(true); }) : genStart(); track("music_resume"); }
     }
     function next() { if (!started) { start(); return; } if (mode === "files") filesNext(); else genNext(); }
+    function pause() { if (playing) toggle(); else wantPlay = false; }
     playBtn.addEventListener("click", toggle);
     nextBtn.addEventListener("click", next);
     document.addEventListener("visibilitychange", function () {
       if (document.hidden && playing) { mode === "files" ? (audio.pause(), ui(false)) : genPause(); }
       else if (!document.hidden && wantPlay && !playing && started) { mode === "files" ? audio.play().then(function () { ui(true); }).catch(function () {}) : genStart(); }
     });
-    return { start: start };
+    return { start: start, pause: pause };
   })();
+
+  /* ================= Favourite songs (official YouTube videos, tap to play) ================= */
+  var songs = (C.youtubeSongs || []).filter(function (s) { return s && /^[\w-]{11}$/.test(s.id); });
+  if (songs.length) {
+    $("#songsSection").hidden = false;
+    var list = $("#songsList"), player = $("#songsPlayer");
+    function playSongs(ids) {
+      music.pause();
+      player.innerHTML = "";
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + ids[0] + "?autoplay=1&rel=0&playsinline=1&playlist=" + ids.join(","); /* playlist must repeat the first id or YouTube skips it */
+      f.title = "YouTube video player";
+      f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      f.referrerPolicy = "strict-origin-when-cross-origin";
+      f.allowFullscreen = true;
+      player.appendChild(f); player.hidden = false;
+      [].forEach.call(list.querySelectorAll("button"), function (b) { b.setAttribute("aria-current", String(b.dataset.id === ids[0])); });
+      player.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+    }
+    var lastGroup = null;
+    songs.forEach(function (s, i) {
+      if (s.group && s.group !== lastGroup) {
+        var h = document.createElement("li"); h.className = "songs__group"; h.textContent = s.group; h.setAttribute("aria-hidden", "true");
+        list.appendChild(h); lastGroup = s.group;
+      }
+      var li = document.createElement("li"), b = document.createElement("button");
+      b.type = "button"; b.dataset.id = s.id;
+      b.innerHTML = '<span class="songs__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span><span class="songs__title"></span><span class="songs__film"></span></span>';
+      b.querySelector(".songs__title").textContent = s.title;
+      b.querySelector(".songs__film").textContent = s.film || "";
+      b.addEventListener("click", function () {
+        /* the tapped song first, then the rest of the list in order */
+        playSongs(songs.slice(i).concat(songs.slice(0, i)).map(function (x) { return x.id; }));
+        track("song_play", { title: s.title });
+      });
+      li.appendChild(b); list.appendChild(li);
+    });
+    $("#songsShuffle").addEventListener("click", function () {
+      var ids = songs.map(function (x) { return x.id; });
+      for (var k = ids.length - 1; k > 0; k--) { var j = Math.floor(Math.random() * (k + 1)); var x = ids[k]; ids[k] = ids[j]; ids[j] = x; }
+      playSongs(ids);
+      track("song_shuffle");
+    });
+  }
 
   /* ================= Petals (canvas) ================= */
   (function () {

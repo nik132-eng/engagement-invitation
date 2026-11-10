@@ -2,3 +2,6 @@ node_modules
 .vercel
 .env*
 .DS_Store
+
+# full-size original photos (optimized copies live in assets/photos/)
+assets/image*.png

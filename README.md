@@ -7,6 +7,8 @@ Mobile-first static site + three tiny Vercel functions. No build step.
 - Live countdown to **12 Dec 2026, 4:30 PM IST**
 - Background music: a unique romantic piece is composed live for every visitor
   (or your own shuffled tracks, see `config.js`)
+- "Our Favourite Songs": official Bollywood songs from YouTube in a visible player, played
+  only when a guest taps one (`youtubeSongs` in `config.js`)
 - "How far are you?" distance to the venue (location never leaves the phone)
 - RSVP form -> `/api/rsvp` (distance included, rounded)
 - SEO: meta + Open Graph, Event structured data, auto sitemap.xml and robots.txt

@@ -172,11 +172,29 @@
       <p class="count__note" id="countNote"></p>
     </section>
 
+    <!-- SONGS (shown only when youtubeSongs are set in config.js) -->
+    <section class="block block--narrow reveal" id="songsSection" hidden>
+      <h2 class="title script" data-i18n="songsTitle"></h2>
+      <div class="divider"><span></span><i>♥</i><span></span></div>
+      <p class="songs__note" data-i18n="songsNote"></p>
+      <div class="songs__player" id="songsPlayer" hidden></div>
+      <ol class="songs" id="songsList"></ol>
+      <button class="btn btn--ghost" id="songsShuffle" type="button" data-i18n="songsShuffle"></button>
+    </section>
+
     <!-- GALLERY (shown only when photos are set in config.js) -->
     <section class="block reveal" id="gallerySection" hidden>
       <h2 class="title script" data-i18n="galleryTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
-      <div class="gallery" id="gallery" tabindex="0" aria-label="Photo gallery"></div>
+      <div class="gallery-wrap">
+        <div class="gallery" id="gallery" tabindex="0" aria-label="Photo gallery"></div>
+        <button class="gallery__nav gallery__nav--prev" id="galPrev" type="button" aria-label="Previous photo" disabled>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="gallery__nav gallery__nav--next" id="galNext" type="button" aria-label="Next photo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
       <div class="dots" id="dots" aria-hidden="true"></div>
     </section>
 

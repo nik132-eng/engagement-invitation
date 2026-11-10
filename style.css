@@ -259,10 +259,15 @@ html[lang="gu"] .unit span { font-family: var(--serif); letter-spacing: 0.02em; 
 .count__note { margin-top: 20px; font-style: italic; font-size: 20px; }
 
 /* gallery */
-.gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; width: min(100%, 400px); aspect-ratio: 2 / 3; margin: 0 auto; border-radius: 14px; box-shadow: 0 18px 40px -20px rgba(60, 25, 18, 0.7); }
+.gallery-wrap { position: relative; width: min(100%, 420px); margin: 0 auto; }
+.gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none; width: 100%; aspect-ratio: 3 / 4; border-radius: 18px; border: 6px solid var(--cream); background: var(--sand); box-shadow: 0 0 0 1px var(--line), 0 18px 40px -20px rgba(60, 25, 18, 0.7); }
 .gallery::-webkit-scrollbar { display: none; }
-.gallery figure { flex: 0 0 100%; scroll-snap-align: center; background: var(--sand); }
-.gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery figure { flex: 0 0 100%; height: 100%; margin: 0; scroll-snap-align: center; scroll-snap-stop: always; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.gallery__nav { position: absolute; top: 50%; z-index: 1; display: grid; place-items: center; width: 42px; height: 42px; margin-top: -21px; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--cream) 88%, transparent); color: var(--maroon); box-shadow: 0 6px 16px -8px rgba(60, 25, 18, 0.7); cursor: pointer; }
+.gallery__nav--prev { left: 10px; }
+.gallery__nav--next { right: 10px; }
+.gallery__nav:disabled { opacity: 0; pointer-events: none; }
 .dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
 .dots i { width: 8px; height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--maroon) 28%, transparent); transition: width 0.25s, background 0.25s; }
 .dots i.on { width: 20px; background: var(--maroon); }
@@ -288,6 +293,28 @@ html[lang="gu"] .dist__title { font-family: var(--serif); letter-spacing: 0.02em
 html[lang="gu"] .dist__out { font-family: var(--serif); }
 .dist__out:empty { display: none; }
 .dist__note { margin-top: 12px; font-size: 15px; opacity: 0.8; }
+
+/* songs (YouTube) */
+.songs__note { margin-bottom: 18px; font-size: 17px; opacity: 0.85; }
+.songs__player { position: relative; margin-bottom: 18px; aspect-ratio: 16 / 9; min-height: 200px; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 16px 36px -18px rgba(60, 25, 18, 0.6); }
+.songs__player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.songs {
+  display: grid; gap: 8px; max-height: min(460px, 62vh); margin: 0 0 20px; padding: 2px 6px 2px 2px; list-style: none; text-align: left;
+  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+}
+.songs__group { position: sticky; top: -2px; z-index: 1; padding: 10px 4px 6px; background: var(--cream); font: 600 13px/1 var(--display); letter-spacing: 0.16em; text-transform: uppercase; color: var(--maroon); }
+.songs button {
+  display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 10px; width: 100%; min-height: 56px; padding: 8px 14px;
+  border: 1px solid var(--line); border-radius: 14px; background: rgba(252, 250, 244, 0.8); color: var(--maroon-deep); font: inherit; text-align: left; cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.songs button:hover { background: color-mix(in srgb, var(--maroon) 8%, transparent); }
+.songs button[aria-current="true"] { background: var(--maroon); color: var(--cream); border-color: var(--maroon); }
+.songs__icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: color-mix(in srgb, var(--maroon) 12%, transparent); }
+.songs button[aria-current="true"] .songs__icon { background: color-mix(in srgb, var(--cream) 22%, transparent); }
+.songs__title { display: block; font-weight: 600; line-height: 1.2; }
+.songs__film { display: block; font-size: 15px; opacity: 0.75; }
 
 /* RSVP */
 .form { display: grid; gap: 18px; text-align: left; }
