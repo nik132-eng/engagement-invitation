@@ -81,7 +81,7 @@ window.INVITE = {
   // Gallery photos, e.g. ["assets/photo1.jpg", "assets/photo2.jpg"]. [] hides the gallery.
   // Portrait 3:4 photos (1080x1440) look best.
   photos: [
-    "assets/photos/photo1.jpg", "assets/photos/photo2.jpg", "assets/photos/photo3.jpg", "assets/photos/photo4.jpg",
+    "assets/photos/photo1.jpg", "assets/photos/photo2.jpg", "assets/photos/photo3.jpg",
     "assets/photos/photo5.jpg", "assets/photos/photo6.jpg", "assets/photos/photo7.jpg", "assets/photos/photo8.jpg",
     "assets/photos/photo9.jpg", "assets/photos/photo10.jpg", "assets/photos/photo11.jpg", "assets/photos/photo12.jpg",
     "assets/photos/photo13.jpg"
