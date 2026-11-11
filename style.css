@@ -209,16 +209,22 @@ html[lang="gu"] .family p.family__rel { font-family: var(--serif); font-size: 23
   background: radial-gradient(circle at 38% 22%, rgba(255, 255, 255, 0.25), transparent 34%), radial-gradient(rgba(252, 251, 247, 0.95), rgba(226, 217, 202, 0.7));
   box-shadow: inset 0 0 40px rgba(20, 8, 0, 0.35);
 }
-/* Everything inside the heart scales with the heart's own width (cqw), and the block sits below the V-shaped notch at the top.
-   The px values are the fallback for browsers without container query units. */
-.heart__text { display: grid; justify-items: center; padding: 46px 0 0; padding: 14cqw 0 0; text-align: center; color: var(--maroon-deep); }
-.heart__kicker { font-size: 19px; font-size: 5.8cqw; line-height: 1.25; font-style: italic; color: var(--maroon); }
-.heart__day { font: 700 58px/1 var(--display); font-size: 18cqw; letter-spacing: 0.02em; color: var(--maroon); }
-html[lang="gu"] .heart__day { font-family: var(--serif); }
-.heart__text strong { font-family: var(--display); font-size: 19px; font-size: 5.8cqw; line-height: 1.25; letter-spacing: 0.04em; }
-html[lang="gu"] .heart__text strong { font-family: var(--serif); font-size: 21px; font-size: 6.4cqw; }
-.heart__text .script { font-size: 20px; font-size: 6cqw; line-height: 1.25; }
-.heart__text small { margin-top: 1cqw; font-size: 15px; font-size: 4.7cqw; line-height: 1.25; font-weight: 600; opacity: 0.9; min-height: 1em; }
+/* Everything inside the heart scales with the heart's own width (cqw) and is spaced on one rhythm. The block sits below the
+   V-shaped notch at the top and ends above the narrowing point. The px values are fallbacks for browsers without cqw units.
+   Lining numerals keep "12", "2026" and "4:30" the same height and weight as the letters around them. */
+.heart__text {
+  display: flex; flex-direction: column; align-items: center; gap: 0.9cqw; padding: 46px 0 0; padding: 13cqw 0 0; text-align: center; color: var(--maroon-deep);
+  font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1;
+}
+html[lang="gu"] .heart__text { font-family: "Noto Serif Gujarati", var(--serif); line-height: 1.3; }
+.heart__kicker { font-size: 18px; font-size: 5.6cqw; line-height: 1.25; font-style: italic; color: var(--maroon); }
+.heart__day { font: 700 62px/0.95 var(--display); font-size: 20cqw; line-height: 0.95; letter-spacing: 0.01em; color: var(--maroon); }
+html[lang="gu"] .heart__day { font-family: "Noto Serif Gujarati", var(--serif); font-weight: 600; line-height: 1.05; margin-bottom: -2.8cqw; }
+.heart__text strong { font-family: var(--display); font-size: 18px; font-size: 5.9cqw; line-height: 1.25; letter-spacing: 0.04em; }
+html[lang="gu"] .heart__text strong { font-family: "Noto Serif Gujarati", var(--serif); font-size: 20px; font-size: 6.2cqw; font-weight: 600; letter-spacing: 0; }
+.heart__text .script { font-size: 19px; font-size: 5.8cqw; line-height: 1.25; }
+html[lang="gu"] .heart__text .script { font-size: 5.6cqw; }
+.heart__text small { font-size: 15px; font-size: 4.7cqw; line-height: 1.3; font-weight: 600; opacity: 0.92; min-height: 1em; }
 .heart__foil { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; transition: opacity 0.9s ease; }
 .heart__hint {
   position: absolute; inset: 0; display: grid; place-items: center; padding: 0 26%; text-align: center; pointer-events: none;
@@ -298,6 +304,9 @@ html[lang="gu"] .unit span { font-family: var(--serif); letter-spacing: 0.02em; 
 @media (min-width: 600px) { .gallery { --fw: 70%; } }
 
 /* program + venue */
+#program { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+html[lang="gu"] .program__date, html[lang="gu"] .program__time { font-family: "Noto Serif Gujarati", var(--serif); }
+.program__time { margin-top: 6px; font: 600 22px/1.3 var(--serif); color: var(--maroon-soft); }
 .outline { list-style: none; counter-reset: step; display: grid; gap: 12px; max-width: 360px; margin: 22px auto 0; padding: 0; text-align: left; }
 .outline li {
   counter-increment: step; display: grid; grid-template-columns: 36px 1fr; align-items: center; gap: 16px; padding: 10px 16px 10px 12px;

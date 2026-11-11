@@ -102,6 +102,7 @@
     $("#dateWeekday").textContent = fmt({ weekday: "long" }, d);
     $("#dateTime").textContent = timeFrom();
     $("#programDate").textContent = fmt({ weekday: "long", day: "numeric", month: "long", year: "numeric" }, d);
+    $("#programTime").textContent = timeFrom();
   }
 
   function applyLang() {
