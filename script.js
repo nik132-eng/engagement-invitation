@@ -11,13 +11,12 @@
   var T = {
     en: {
       splashKicker: "You are invited", tapOpen: "Tap the seal to open",
-      intro: "Together with our families,\nWe invite you to celebrate our Engagement 💍",
+      intro: "Welcome to the celebration of love & togetherness\nWe are delighted to invite you in our engagement ceremony.",
       groomName: "Nikunj", brideName: "Ayushi", scroll: "Scroll",
-      welcome: "Welcome to the celebration of love and togetherness 💍✨\nWe are delighted to have you with us on our Engagement.",
       familiesTitle: "Our Families",
       familiesLine: "Two souls, two families,\none beautiful beginning.",
       groomParents: "Shri Champakbhai R. Rohit\n&\nA. Sau. Jaybalaben C. Rohit", groomRel: "Their son", groomTitle: "Nikunj",
-      brideParents: "Shri Kishmatbhai A. Andhariya\n&\nA. Sau. Rinkuben K. Andhariya", brideRel: "Their daughter", brideTitle: "Ayushi",
+      brideParents: "Shri Kismatbhai A. Andhariya\n&\nA. Sau. Rinkuben K. Andhariya", brideRel: "Their daughter", brideTitle: "Ayushi",
       familiesBlessing: "Where two hearts meet, two families become one,\nand every blessing turns into a promise of forever.",
       foreverTitle: "Our forever begins", invited: "You're Invited!",
       saveDate: "Save the Date", googleCal: "Add to Google Calendar", downloadIcs: "Download for Apple / Outlook",
@@ -25,14 +24,13 @@
       countBefore: "until our engagement ceremony begins", countLive: "It's today. The celebration is on! 💍", countAfter: "Thank you for celebrating with us 💓",
       galleryTitle: "Our Moments", galShuffle: "Shuffle photos",
       songsTitle: "Songs of Love", songsNote: "Romantic songs play on their own, one after another. Tap any song to play from there.", songsShuffle: "Shuffle all songs",
-      programTitle: "Program", event: "Engagement Ceremony",
+      programTitle: "Program", stepChandla: "Chandla Vidhi", stepGoldhana: "Goldhana", stepRing: "Ring Ceremony", stepGreetings: "Greetings & Wishes", stepDinner: "Dinner",
       venueTitle: "Venue", directions: "Get Directions",
       distTitle: "How far are you?", distBtn: "Show my distance",
       distAway: "About {km} km away", distNear: "You're less than 1 km away!", distLoading: "Finding your distance…",
       distDenied: "Location is off. Tap to try again.",
       distFrom: "You are in {place}",
       distNote: "Your exact location stays on your phone. Only the rounded distance and the nearest city name are shared if you RSVP.",
-      giftsTitle: "Gifts", gifts: "Your blessings and presence are the best gift 💓",
       fName: "Your name", fAttend: "Will you be attending?", fYes: "Yes, I'll be there!", fNo: "Sorry, I can't make it",
       fGuests: "Total guests (including you)", fMsg: "Your message (optional)", fSend: "Send RSVP", fSending: "Sending…",
       fNeedName: "Please enter your name.", fError: "Couldn't send your RSVP. Please try again.", fErrorWa: "Or send it on WhatsApp",
@@ -40,13 +38,13 @@
       fEdit: "Change my reply",
       closing: "We can't wait to celebrate with you!", signoff: "Nikunj & Ayushi",
       footer: "Made with love for Nikunj & Ayushi", dockRsvp: "RSVP",
-      scratchHint: "Scratch to reveal the date & time", scratchAria: "Scratch to reveal the date and time. Press Enter to reveal it."
+      rsvpTitle: "Waiting for your response",
+      scratchHint: "Scratch to reveal the date", scratchAria: "Scratch to reveal the date and time. Press Enter to reveal them."
     },
     gu: {
       splashKicker: "આપ સૌને આમંત્રણ", tapOpen: "ખોલવા માટે સીલ પર ટેપ કરો",
-      intro: "અમારા બંને પરિવારો સાથે,\nઅમારા સગાઈ સમારોહમાં આપને સાદર આમંત્રણ 💍",
+      intro: "પ્રેમ અને સાથની ઉજવણીમાં આપનું સ્વાગત છે\nઅમારા સગાઈ સમારોહમાં આપને આમંત્રિત કરતાં અમને ખૂબ આનંદ થાય છે.",
       groomName: "નિકુંજ", brideName: "આયુષી", scroll: "નીચે જુઓ",
-      welcome: "પ્રેમ અને સાથની ઉજવણીમાં આપનું સ્વાગત છે 💍✨\nઅમારા સગાઈ પ્રસંગે આપની હાજરી અમારા માટે ખૂબ આનંદની વાત છે.",
       familiesTitle: "અમારા પરિવાર",
       familiesLine: "બે આત્મા, બે પરિવાર,\nએક સુંદર શરૂઆત.",
       groomParents: "શ્રી ચંપકભાઈ આર. રોહિત\nઅને\nઅ. સૌ. જયબાળાબેન સી. રોહિતના", groomRel: "સુપુત્ર", groomTitle: "ચિ. નિકુંજ",
@@ -58,14 +56,13 @@
       countBefore: "અમારા સગાઈ સમારોહ શરૂ થવામાં", countLive: "આજે જ છે. ઉજવણી ચાલુ છે! 💍", countAfter: "અમારી સાથે ઉજવણી કરવા બદલ આભાર 💓",
       galleryTitle: "અમારી યાદો", galShuffle: "ફોટા શફલ કરો",
       songsTitle: "પ્રેમનાં ગીતો", songsNote: "રોમેન્ટિક ગીતો એક પછી એક આપોઆપ વાગે છે. કોઈ પણ ગીત પર ટેપ કરો અને ત્યાંથી સાંભળો.", songsShuffle: "બધાં ગીતો શફલ કરો",
-      programTitle: "કાર્યક્રમ", event: "સગાઈ સમારોહ",
+      programTitle: "કાર્યક્રમ", stepChandla: "ચાંદલા વિધિ", stepGoldhana: "ગોળ ધાણા", stepRing: "રિંગ સેરેમની", stepGreetings: "અભિનંદન અને શુભેચ્છાઓ", stepDinner: "ભોજન",
       venueTitle: "સ્થળ", directions: "દિશા મેળવો",
       distTitle: "તમે કેટલા દૂર છો?", distBtn: "મારું અંતર બતાવો",
       distAway: "આશરે {km} કિમી દૂર", distNear: "તમે 1 કિમીથી પણ ઓછા દૂર છો!", distLoading: "અંતર શોધી રહ્યા છીએ…",
       distDenied: "લોકેશન બંધ છે. ફરી પ્રયત્ન કરવા ટેપ કરો.",
       distFrom: "તમે {place} માં છો",
       distNote: "તમારું ચોક્કસ લોકેશન તમારા ફોનમાં જ રહે છે. RSVP કરો તો ફક્ત આશરે અંતર અને નજીકના શહેરનું નામ શેર થાય છે.",
-      giftsTitle: "ભેટ", gifts: "આપના આશીર્વાદ અને હાજરી જ અમારા માટે સૌથી મોટી ભેટ છે 💓",
       fName: "આપનું નામ", fAttend: "શું આપ હાજર રહેશો?", fYes: "હા, હું આવીશ!", fNo: "માફ કરશો, હું આવી શકીશ નહીં",
       fGuests: "કુલ મહેમાન (આપ સહિત)", fMsg: "આપનો સંદેશ (વૈકલ્પિક)", fSend: "RSVP મોકલો", fSending: "મોકલી રહ્યા છીએ…",
       fNeedName: "કૃપા કરીને આપનું નામ લખો.", fError: "RSVP મોકલી શકાયું નહીં. ફરી પ્રયત્ન કરો.", fErrorWa: "અથવા WhatsApp પર મોકલો",
@@ -73,7 +70,8 @@
       fEdit: "જવાબ બદલો",
       closing: "આપની સાથે ઉજવણી કરવા અમે આતુર છીએ!", signoff: "નિકુંજ અને આયુષી",
       footer: "નિકુંજ અને આયુષી માટે પ્રેમથી બનાવેલ", dockRsvp: "RSVP",
-      scratchHint: "તારીખ અને સમય જોવા સ્ક્રેચ કરો", scratchAria: "તારીખ અને સમય જોવા સ્ક્રેચ કરો. સીધું જોવા Enter દબાવો."
+      rsvpTitle: "આપના જવાબની રાહ જોઈ રહ્યા છીએ",
+      scratchHint: "તારીખ જોવા સ્ક્રેચ કરો", scratchAria: "તારીખ અને સમય જોવા સ્ક્રેચ કરો. સીધું જોવા Enter દબાવો."
     }
   };
 
@@ -90,15 +88,20 @@
   var fmt = function (o, d) { return new Intl.DateTimeFormat(locale(), Object.assign({ timeZone: "UTC" }, o)).format(d); };
   var two = function (n) { return String(n).padStart(2, "0"); };
 
+  /* "4:30 PM onwards" / "સાંજે 4:30 વાગ્યાથી", from the start time in config.js */
+  function timeFrom() {
+    if (!tm) return "";
+    var h = tm[0], clock = (h % 12 || 12) + ":" + two(tm[1]);
+    if (lang === "gu") return (h < 12 ? "સવારે" : h < 16 ? "બપોરે" : h < 20 ? "સાંજે" : "રાત્રે") + " " + clock + " વાગ્યાથી";
+    return clock + " " + (h >= 12 ? "PM" : "AM") + " onwards";
+  }
   function renderDates() {
-    var d = utc(12, 0), time = tm ? fmt({ hour: "numeric", minute: "2-digit" }, utc(tm[0], tm[1])) : "";
-    var long = fmt({ weekday: "long", day: "numeric", month: "long", year: "numeric" }, d);
-    $("#dateShort").textContent = fmt({ day: "numeric", month: "long", year: "numeric" }, d);
+    var d = utc(12, 0);
+    $("#dateDay").textContent = fmt({ day: "numeric" }, d);
+    $("#dateMonthYear").textContent = fmt({ month: "long", year: "numeric" }, d);
     $("#dateWeekday").textContent = fmt({ weekday: "long" }, d);
-    $("#dateTime").textContent = time;
-    $("#programDate").textContent = long;
-    $("#programTime").textContent = time;
-    $("#heroDate").textContent = fmt({ day: "numeric", month: "long", year: "numeric" }, d) + (time ? "  ·  " + time : "");
+    $("#dateTime").textContent = timeFrom();
+    $("#programDate").textContent = fmt({ weekday: "long", day: "numeric", month: "long", year: "numeric" }, d);
   }
 
   function applyLang() {
@@ -108,7 +111,7 @@
       if (v != null) el.textContent = v;
     });
     document.querySelectorAll("[data-anim]").forEach(splitText);
-    $("#scratchFoil").setAttribute("aria-label", t("scratchAria"));
+    $("#heartFoil").setAttribute("aria-label", t("scratchAria"));
     $("#langLabel").textContent = lang === "en" ? "ગુજરાતી" : "English";
     renderDates(); renderDistance(); tick(); renderThanks();
   }
@@ -497,55 +500,6 @@
     });
   }
 
-  /* ================= Scratch-to-reveal date and time (hero) ================= */
-  (function () {
-    var wrap = $("#scratch"), cv = $("#scratchFoil"), cx = cv.getContext("2d");
-    var dpr = Math.min(2, window.devicePixelRatio || 1), W = 0, H = 0, done = false, drawing = false, last = null, moves = 0;
-
-    function paint() {
-      var r = wrap.getBoundingClientRect();
-      if (!r.width || done) return;
-      W = cv.width = Math.round(r.width * dpr); H = cv.height = Math.round(r.height * dpr);
-      cx.globalCompositeOperation = "source-over";
-      var g = cx.createLinearGradient(0, 0, W, H);
-      g.addColorStop(0, "#cfa857"); g.addColorStop(0.3, "#f4e2ab"); g.addColorStop(0.55, "#c79b49"); g.addColorStop(0.8, "#ead08a"); g.addColorStop(1, "#bb8c3f");
-      cx.fillStyle = g; cx.fillRect(0, 0, W, H);
-      cx.globalAlpha = 0.18; cx.strokeStyle = "#fff"; cx.lineWidth = dpr;
-      for (var x = -H; x < W; x += 9 * dpr) { cx.beginPath(); cx.moveTo(x, H); cx.lineTo(x + H, 0); cx.stroke(); }
-      cx.globalAlpha = 0.5; cx.fillStyle = "#fff";
-      for (var i = 0; i < 70; i++) { cx.beginPath(); cx.arc(Math.random() * W, Math.random() * H, (0.4 + Math.random() * 1.2) * dpr, 0, 6.283); cx.fill(); }
-      cx.globalAlpha = 1;
-    }
-    function reveal(via) {
-      if (done) return; done = true;
-      wrap.classList.add("revealed"); cv.setAttribute("aria-hidden", "true"); cv.tabIndex = -1;
-      track("date_revealed", { via: via });
-    }
-    function pt(e) { var r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) * W / r.width, y: (e.clientY - r.top) * H / r.height }; }
-    function cleared() {
-      var d = cx.getImageData(0, 0, W, H).data, n = 0, tot = 0;
-      for (var i = 3; i < d.length; i += 64) { tot++; if (d[i] < 128) n++; }
-      return n / tot;
-    }
-    function strike(p) {
-      cx.globalCompositeOperation = "destination-out"; cx.lineCap = "round"; cx.lineJoin = "round"; cx.lineWidth = 30 * dpr;
-      cx.beginPath(); cx.moveTo(last.x, last.y); cx.lineTo(p.x + 0.01, p.y); cx.stroke(); last = p;
-    }
-    cv.addEventListener("pointerdown", function (e) {
-      if (done) return; e.preventDefault(); drawing = true;
-      try { cv.setPointerCapture(e.pointerId); } catch (x) {} /* throws if the pointer is already gone; scratching still works */
-      wrap.classList.add("scratching"); last = pt(e); strike(last);
-    });
-    cv.addEventListener("pointermove", function (e) {
-      if (!drawing || done) return; strike(pt(e));
-      if (++moves % 6 === 0 && cleared() > 0.5) reveal("scratch");
-    });
-    function end() { if (!drawing) return; drawing = false; if (!done && cleared() > 0.5) reveal("scratch"); }
-    cv.addEventListener("pointerup", end); cv.addEventListener("pointercancel", end);
-    cv.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); reveal("key"); } });
-    if ("ResizeObserver" in window) new ResizeObserver(paint).observe(wrap); else paint();
-  })();
-
   /* ================= Petals (canvas) ================= */
   (function () {
     if (reduced) return;
@@ -603,7 +557,65 @@
       vr: (Math.random() - 0.5) * 0.3, w: 5 + Math.random() * 6, h: 8 + Math.random() * 8, c: ccol[(Math.random() * ccol.length) | 0] });
     cancelAnimationFrame(cfRaf); cfLoop();
   }
-  $("#heartBtn").addEventListener("click", function () { burst(this); track("heart_tap"); });
+  /* tapping the heart showers confetti, once the date has been scratched clear */
+  $("#heartBtn").addEventListener("click", function () { if (!heartRevealed) return; burst(this); track("heart_tap"); });
+
+  /* ================= Heart: the date and time sit under gold foil; scratch to reveal ================= */
+  var heartRevealed = false;
+  (function () {
+    var heart = $("#heartBtn"), cv = $("#heartFoil"), cx = cv.getContext("2d");
+    var dpr = Math.min(2, window.devicePixelRatio || 1), W = 0, H = 0, done = false, drawing = false, last = null, moves = 0, probe = [];
+    var HEART = "M0.5,0.96 C0.5,0.96 0.06,0.70 0.06,0.36 C0.06,0.18 0.20,0.06 0.32,0.06 C0.42,0.06 0.48,0.14 0.5,0.24 C0.52,0.14 0.58,0.06 0.68,0.06 C0.80,0.06 0.94,0.18 0.94,0.36 C0.94,0.70 0.5,0.96 0.5,0.96 Z";
+
+    function paint() {
+      if (done) return;
+      var w = cv.offsetWidth, h = cv.offsetHeight;
+      if (!w) return;
+      W = cv.width = Math.round(w * dpr); H = cv.height = Math.round(h * dpr);
+      /* foil only inside the heart */
+      cx.save(); cx.scale(W, H); cx.clip(new Path2D(HEART)); cx.setTransform(1, 0, 0, 1, 0, 0);
+      var g = cx.createLinearGradient(0, 0, W, H);
+      g.addColorStop(0, "#cfa857"); g.addColorStop(0.3, "#f4e2ab"); g.addColorStop(0.55, "#c79b49"); g.addColorStop(0.8, "#ead08a"); g.addColorStop(1, "#bb8c3f");
+      cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+      cx.globalAlpha = 0.18; cx.strokeStyle = "#fff"; cx.lineWidth = dpr;
+      for (var x = -H; x < W; x += 9 * dpr) { cx.beginPath(); cx.moveTo(x, H); cx.lineTo(x + H, 0); cx.stroke(); }
+      cx.globalAlpha = 0.5; cx.fillStyle = "#fff";
+      for (var i = 0; i < 110; i++) { cx.beginPath(); cx.arc(Math.random() * W, Math.random() * H, (0.4 + Math.random() * 1.3) * dpr, 0, 6.283); cx.fill(); }
+      cx.globalAlpha = 1; cx.restore();
+      /* remember which sample points are foil, so "mostly scratched" is measured on the heart only */
+      var d = cx.getImageData(0, 0, W, H).data; probe = [];
+      for (var k = 3; k < d.length; k += 64) if (d[k] > 128) probe.push(k);
+    }
+    function reveal(via) {
+      if (done) return; done = true; heartRevealed = true;
+      heart.classList.add("revealed"); cv.setAttribute("aria-hidden", "true"); cv.tabIndex = -1;
+      track("date_revealed", { via: via });
+      if (!reduced) setTimeout(function () { burst(heart); }, 250);
+    }
+    function pt(e) { var r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) * W / r.width, y: (e.clientY - r.top) * H / r.height }; }
+    function cleared() {
+      var d = cx.getImageData(0, 0, W, H).data, n = 0;
+      for (var k = 0; k < probe.length; k++) if (d[probe[k]] < 128) n++;
+      return probe.length ? n / probe.length : 1;
+    }
+    function strike(p) {
+      cx.globalCompositeOperation = "destination-out"; cx.lineCap = "round"; cx.lineJoin = "round"; cx.lineWidth = 38 * dpr;
+      cx.beginPath(); cx.moveTo(last.x, last.y); cx.lineTo(p.x + 0.01, p.y); cx.stroke(); last = p;
+    }
+    cv.addEventListener("pointerdown", function (e) {
+      if (done) return; e.preventDefault(); drawing = true;
+      try { cv.setPointerCapture(e.pointerId); } catch (x) {} /* throws if the pointer is already gone; scratching still works */
+      heart.classList.add("scratching"); last = pt(e); strike(last);
+    });
+    cv.addEventListener("pointermove", function (e) {
+      if (!drawing || done) return; strike(pt(e));
+      if (++moves % 6 === 0 && cleared() > 0.55) reveal("scratch");
+    });
+    function end() { if (!drawing) return; drawing = false; if (!done && cleared() > 0.55) reveal("scratch"); }
+    cv.addEventListener("pointerup", end); cv.addEventListener("pointercancel", end);
+    cv.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); reveal("key"); } });
+    if ("ResizeObserver" in window) new ResizeObserver(paint).observe(heart); else paint();
+  })();
 
   /* ================= Scroll: reveal, progress, parallax ================= */
   var els = document.querySelectorAll(".reveal");

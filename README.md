@@ -4,8 +4,10 @@ Mobile-first static site + three tiny Vercel functions. No build step.
 
 ## What it does
 - Tap-to-open splash, animated text, scroll progress, falling petals, English/Gujarati toggle
-- The date and time on the first page are hidden under gold foil: guests scratch to reveal them
+- The date and time in the heart are under heart-shaped gold foil: guests scratch to reveal them (confetti on reveal)
 - Live countdown to **12 Dec 2026, 4:30 PM IST**
+- Program: a numbered outline of the day (Chandla Vidhi, Goldhana, Ring Ceremony, Greetings & Wishes, Dinner),
+  edited in `script.js`
 - Music: the official YouTube songs in `youtubeSongs` (`config.js`) play by default as one shuffled
   playlist, starting when a guest taps the seal. They are listed in "Songs of Love" with the
   player (tap a song to play from it, or shuffle); the dock has play/pause and next

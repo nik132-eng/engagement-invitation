@@ -99,24 +99,12 @@
           <span class="hero__amp" aria-hidden="true">&amp;</span>
           <span class="hero__name" data-anim="letters" data-i18n="brideName"></span>
         </h1>
-        <div class="scratch" id="scratch">
-          <p class="hero__date" id="heroDate"></p>
-          <canvas class="scratch__foil" id="scratchFoil" role="button" tabindex="0"></canvas>
-          <span class="scratch__hint" data-i18n="scratchHint" aria-hidden="true"></span>
-        </div>
       </div>
 
-      <a class="scroll-hint" href="#welcome" aria-label="Scroll down">
+      <a class="scroll-hint" href="#families" aria-label="Scroll down">
         <span data-i18n="scroll"></span>
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
       </a>
-    </section>
-
-    <!-- WELCOME -->
-    <section class="block block--narrow reveal" id="welcome">
-      <div class="divider"><span></span><i>♥</i><span></span></div>
-      <p class="welcome" data-anim="words" data-i18n="welcome"></p>
-      <div class="divider"><span></span><i>♥</i><span></span></div>
     </section>
 
     <!-- FAMILIES -->
@@ -146,17 +134,20 @@
       <h2 class="title script" data-anim="words" data-i18n="foreverTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
 
-      <button class="heart" id="heartBtn" type="button" aria-label="Celebrate">
+      <div class="heart" id="heartBtn" role="group" aria-label="Date and time">
         <span class="heart__shape">
           <span class="heart__text">
             <span class="heart__kicker script" data-i18n="invited"></span>
-            <strong id="dateShort"></strong>
+            <span class="heart__day" id="dateDay"></span>
+            <strong id="dateMonthYear"></strong>
             <span class="script" id="dateWeekday"></span>
             <small id="dateTime"></small>
           </span>
+          <canvas class="heart__foil" id="heartFoil" role="button" tabindex="0"></canvas>
+          <span class="heart__hint" data-i18n="scratchHint" aria-hidden="true"></span>
         </span>
         <svg class="heart__outline" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M50,96 C50,96 6,70 6,36 C6,18 20,6 32,6 C42,6 48,14 50,24 C52,14 58,6 68,6 C80,6 94,18 94,36 C94,70 50,96 50,96 Z" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>
-      </button>
+      </div>
 
       <div class="save">
         <button class="btn" id="saveBtn" type="button" aria-expanded="false" aria-controls="saveMenu" data-i18n="saveDate"></button>
@@ -178,16 +169,6 @@
         <div class="unit"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="ring-bg" cx="40" cy="40" r="34"/><circle class="ring" id="r-s" cx="40" cy="40" r="34"/></svg><b id="cd-s">00</b><span data-i18n="seconds"></span></div>
       </div>
       <p class="count__note" id="countNote"></p>
-    </section>
-
-    <!-- SONGS: one playlist that plays by default (the list comes from youtubeSongs in config.js) -->
-    <section class="block block--narrow reveal" id="songsSection" hidden>
-      <h2 class="title script" data-anim="words" data-i18n="songsTitle"></h2>
-      <div class="divider"><span></span><i>♥</i><span></span></div>
-      <p class="songs__note" data-i18n="songsNote"></p>
-      <div class="songs__player"><div id="ytMount"></div></div>
-      <ol class="songs" id="songsList"></ol>
-      <button class="btn btn--ghost" id="songsShuffle" type="button" data-i18n="songsShuffle"></button>
     </section>
 
     <!-- GALLERY (shown only when photos are set in config.js) -->
@@ -212,10 +193,13 @@
       <h2 class="title script" data-anim="words" data-i18n="programTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <p class="program__date" id="programDate"></p>
-      <div class="program__row">
-        <span class="program__time" id="programTime"></span>
-        <p class="program__event" data-i18n="event"></p>
-      </div>
+      <ol class="outline">
+        <li data-i18n="stepChandla"></li>
+        <li data-i18n="stepGoldhana"></li>
+        <li data-i18n="stepRing"></li>
+        <li data-i18n="stepGreetings"></li>
+        <li data-i18n="stepDinner"></li>
+      </ol>
     </section>
 
     <!-- VENUE + DISTANCE -->
@@ -235,16 +219,9 @@
       </div>
     </section>
 
-    <!-- GIFTS -->
-    <section class="block block--narrow reveal" id="gifts">
-      <h2 class="title script" data-anim="words" data-i18n="giftsTitle"></h2>
-      <div class="divider"><span></span><i>♥</i><span></span></div>
-      <p class="plain" data-i18n="gifts"></p>
-    </section>
-
     <!-- RSVP -->
     <section class="block block--narrow reveal" id="rsvp">
-      <h2 class="title script" data-anim="words">RSVP</h2>
+      <h2 class="title script" data-anim="words" data-i18n="rsvpTitle"></h2>
       <div class="divider"><span></span><i>♥</i><span></span></div>
 
       <form class="form" id="rsvpForm" novalidate>
@@ -292,6 +269,15 @@
       <div class="divider"><span></span><i>♥</i><span></span></div>
       <p class="closing__line script" data-anim="words" data-i18n="closing"></p>
       <p class="closing__names script" data-anim="words" data-i18n="signoff"></p>
+    </section>
+    <!-- SONGS: one playlist that plays by default (the list comes from youtubeSongs in config.js) -->
+    <section class="block block--narrow reveal" id="songsSection" hidden>
+      <h2 class="title script" data-anim="words" data-i18n="songsTitle"></h2>
+      <div class="divider"><span></span><i>♥</i><span></span></div>
+      <p class="songs__note" data-i18n="songsNote"></p>
+      <div class="songs__player"><div id="ytMount"></div></div>
+      <ol class="songs" id="songsList"></ol>
+      <button class="btn btn--ghost" id="songsShuffle" type="button" data-i18n="songsShuffle"></button>
     </section>
   </main>
 

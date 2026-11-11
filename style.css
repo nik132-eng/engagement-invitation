@@ -156,12 +156,8 @@ body.opened .dock { translate: -50% 0; }
 }
 html[lang="gu"] .hero__name { font-family: var(--serif); letter-spacing: 0; }
 .hero__amp { font-family: var(--script); font-size: clamp(28px, 8vw, 48px); line-height: 1.2; color: var(--maroon-soft); opacity: 0; }
-.hero__date { font: 600 14px/1.4 var(--display); letter-spacing: 0.18em; text-transform: uppercase; color: var(--maroon); }
-html[lang="gu"] .hero__date { font-family: var(--serif); letter-spacing: 0.02em; text-transform: none; font-size: 20px; }
-
 body.opened .hero__logo { animation: logoIn 1.4s 0.35s cubic-bezier(.2, .8, .2, 1) forwards; }
 body.opened .hero__amp { animation: fadeUp 0.9s 1.5s ease forwards; }
-body.opened .scratch { animation: fadeUp 0.9s 2.4s ease forwards; }
 @keyframes logoIn { from { opacity: 0; scale: 0.82; filter: blur(8px); } to { opacity: 1; scale: 1; filter: blur(0); } }
 @keyframes fadeUp { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
 
@@ -177,9 +173,7 @@ html[lang="gu"] .scroll-hint { font-family: var(--serif); letter-spacing: 0.02em
 .block { position: relative; z-index: 4; padding: 60px 24px; max-width: 760px; margin: 0 auto; text-align: center; }
 .block--narrow { max-width: 540px; }
 .block::before { content: ""; position: absolute; top: 0; left: 50%; width: min(420px, 80%); height: 1px; transform: translateX(-50%); background: linear-gradient(to right, transparent, var(--line), transparent); }
-#welcome::before { display: none; }
 .title { font-size: clamp(34px, 9vw, 52px); line-height: 1.2; color: var(--maroon); }
-.welcome { font-size: clamp(22px, 5.8vw, 30px); line-height: 1.6; font-style: italic; white-space: pre-line; color: var(--maroon); }
 .plain { font-size: 21px; }
 .divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 22px 0; color: var(--maroon); }
 .divider span { height: 1px; width: 64px; background: linear-gradient(to right, transparent, var(--maroon)); opacity: 0.45; }
@@ -204,22 +198,37 @@ html[lang="gu"] .family p.family__rel { font-family: var(--serif); font-size: 23
 
 /* heart */
 .heart {
-  position: relative; display: block; width: min(270px, 72vw); aspect-ratio: 13 / 12; margin: 0 auto; background: none; border: 0; cursor: pointer; color: var(--maroon);
+  position: relative; display: block; width: min(340px, 90vw); aspect-ratio: 13 / 12; container-type: inline-size; margin: 0 auto; cursor: default; color: var(--maroon);
   filter: drop-shadow(0 10px 18px rgba(80, 42, 32, 0.3)); transition: transform 0.25s ease; animation: beat 3.2s ease-in-out infinite;
 }
 @keyframes beat { 0%, 100% { scale: 1; } 8% { scale: 1.04; } 16% { scale: 1; } 24% { scale: 1.03; } 32% { scale: 1; } }
-.heart:active { transform: scale(0.96); }
+.heart.revealed { cursor: pointer; }
+.heart.revealed:active { transform: scale(0.96); }
 .heart__shape {
   position: absolute; inset: 0; clip-path: url(#heart-clip); display: grid; place-items: center;
   background: radial-gradient(circle at 38% 22%, rgba(255, 255, 255, 0.25), transparent 34%), radial-gradient(rgba(252, 251, 247, 0.95), rgba(226, 217, 202, 0.7));
   box-shadow: inset 0 0 40px rgba(20, 8, 0, 0.35);
 }
-.heart__text { display: grid; padding: 0 22px 8px; text-align: center; color: var(--maroon-deep); }
-.heart__kicker { font-size: 22px; font-style: italic; color: var(--maroon); }
-.heart__text strong { font-family: var(--display); font-size: 17px; line-height: 1.2; }
-html[lang="gu"] .heart__text strong { font-family: var(--serif); font-size: 19px; }
-.heart__text .script { font-size: 17px; }
-.heart__text small { font-size: 13px; opacity: 0.9; min-height: 1em; }
+/* Everything inside the heart scales with the heart's own width (cqw), and the block sits below the V-shaped notch at the top.
+   The px values are the fallback for browsers without container query units. */
+.heart__text { display: grid; justify-items: center; padding: 46px 0 0; padding: 14cqw 0 0; text-align: center; color: var(--maroon-deep); }
+.heart__kicker { font-size: 19px; font-size: 5.8cqw; line-height: 1.25; font-style: italic; color: var(--maroon); }
+.heart__day { font: 700 58px/1 var(--display); font-size: 18cqw; letter-spacing: 0.02em; color: var(--maroon); }
+html[lang="gu"] .heart__day { font-family: var(--serif); }
+.heart__text strong { font-family: var(--display); font-size: 19px; font-size: 5.8cqw; line-height: 1.25; letter-spacing: 0.04em; }
+html[lang="gu"] .heart__text strong { font-family: var(--serif); font-size: 21px; font-size: 6.4cqw; }
+.heart__text .script { font-size: 20px; font-size: 6cqw; line-height: 1.25; }
+.heart__text small { margin-top: 1cqw; font-size: 15px; font-size: 4.7cqw; line-height: 1.25; font-weight: 600; opacity: 0.9; min-height: 1em; }
+.heart__foil { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; transition: opacity 0.9s ease; }
+.heart__hint {
+  position: absolute; inset: 0; display: grid; place-items: center; padding: 0 26%; text-align: center; pointer-events: none;
+  font: 700 12px/1.45 var(--display); letter-spacing: 0.16em; text-transform: uppercase; color: #4d2c10; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  animation: pulse 2.2s ease-in-out infinite; transition: opacity 0.3s;
+}
+html[lang="gu"] .heart__hint { font-family: var(--serif); letter-spacing: 0.02em; text-transform: none; font-size: 17px; }
+.heart.scratching .heart__hint { opacity: 0; animation: none; }
+.heart.revealed .heart__foil { opacity: 0; pointer-events: none; }
+.heart.revealed .heart__hint { display: none; }
 .heart__outline { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.7; pointer-events: none; }
 
 /* buttons */
@@ -289,14 +298,15 @@ html[lang="gu"] .unit span { font-family: var(--serif); letter-spacing: 0.02em; 
 @media (min-width: 600px) { .gallery { --fw: 70%; } }
 
 /* program + venue */
+.outline { list-style: none; counter-reset: step; display: grid; gap: 12px; max-width: 360px; margin: 22px auto 0; padding: 0; text-align: left; }
+.outline li {
+  counter-increment: step; display: grid; grid-template-columns: 36px 1fr; align-items: center; gap: 16px; padding: 10px 16px 10px 12px;
+  border: 1px solid var(--line); border-radius: 16px; background: rgba(252, 250, 244, 0.75); font: 600 23px/1.25 var(--display); color: var(--maroon);
+}
+.outline li::before { content: counter(step); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--maroon); color: var(--cream); font: 700 15px/1 var(--display); }
+html[lang="gu"] .outline li { font-family: var(--serif); font-size: 24px; }
 .program__date { font: 700 15px/1.4 var(--display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--maroon); }
 html[lang="gu"] .program__date { font-family: var(--serif); letter-spacing: 0.02em; text-transform: none; font-size: 21px; }
-.program__row { display: flex; gap: 16px; justify-content: center; align-items: baseline; margin-top: 18px; }
-.program__time { min-width: 5.5rem; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
-.program__time:empty { display: none; }
-.program__event { padding-left: 16px; border-left: 1px solid var(--line); font: 600 24px/1.2 var(--display); color: var(--maroon); text-align: left; }
-.program__time:empty + .program__event { border: 0; padding: 0; text-align: center; }
-html[lang="gu"] .program__event { font-family: var(--serif); }
 .venue__name { font: 600 25px/1.3 var(--display); margin-bottom: 4px; color: var(--maroon); }
 html[lang="gu"] .venue__name { font-family: var(--serif); }
 .venue__addr { margin-bottom: 24px; }
@@ -371,23 +381,6 @@ html[lang="gu"] .dist__out { font-family: var(--serif); }
 .footer__credit a { color: inherit; }
 .footer { position: relative; z-index: 4; padding: 30px 24px 16px; text-align: center; font-size: 15px; border-top: 1px solid var(--line); opacity: 0.8; }
 
-/* ---------- scratch to reveal the date ---------- */
-.scratch { position: relative; display: grid; place-items: center; min-width: min(320px, 84vw); margin-top: 14px; border-radius: 16px; opacity: 0; }
-.scratch .hero__date { padding: 16px 26px; }
-.scratch__foil {
-  position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 16px; cursor: grab; touch-action: none;
-  box-shadow: 0 8px 22px -10px rgba(60, 25, 18, 0.6); transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.scratch__hint {
-  position: absolute; inset: 0; display: grid; place-items: center; padding: 0 12px; text-align: center; pointer-events: none;
-  font: 700 11px/1.35 var(--display); letter-spacing: 0.16em; text-transform: uppercase; color: #4d2c10; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
-  animation: pulse 2.2s ease-in-out infinite; transition: opacity 0.3s;
-}
-html[lang="gu"] .scratch__hint { font-family: var(--serif); letter-spacing: 0.02em; text-transform: none; font-size: 16px; }
-.scratch.scratching .scratch__hint { opacity: 0; animation: none; }
-.scratch.revealed .scratch__foil { opacity: 0; transform: scale(1.04); pointer-events: none; }
-.scratch.revealed .scratch__hint { display: none; }
-
 /* ---------- animated text: letters / words rise and un-blur ---------- */
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .ch { display: inline-block; opacity: 0; }
@@ -412,7 +405,7 @@ body.opened .hero__name:last-child .ch { animation-delay: calc(1.8s + var(--i) *
   .seal { width: 150px; height: 150px; }
   .hero__logo { width: 140px; }
   .block { padding: 84px 32px; }
-  .heart { width: 300px; }
+  .heart { width: 380px; }
   .nowplaying { font-size: 17px; }
 }
 
@@ -429,7 +422,6 @@ body.opened .hero__name:last-child .ch { animation-delay: calc(1.8s + var(--i) *
   #petals { display: none; }
   .ch { opacity: 1 !important; animation: none !important; filter: none; }
   .hero__name .ch { background: none; -webkit-text-fill-color: currentColor; color: var(--maroon); }
-  .scratch { opacity: 1; animation: none !important; }
   .hero__logo { opacity: 1; animation: none !important; }
   .gallery__card { transform: none !important; opacity: 1 !important; }
   .gallery figure.is-active img, .gallery figure.is-active .gallery__card::after, .dots i.on::after { animation: none !important; }
