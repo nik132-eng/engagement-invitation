@@ -14,7 +14,7 @@ Mobile-first static site + three tiny Vercel functions. No build step.
 - Photo gallery: a 3D coverflow in a new random order on every visit, with autoplay, a slow zoom, a glint on the
   centred photo, dealt-card entrance and a Shuffle button
 - "How far are you?" distance to the venue and the guest's nearest city (for example "Valsad, Gujarat, India"),
-  both worked out on the phone. The exact location is never sent: only the rounded distance and the city name
+  the city name is worked out on the phone. The distance is by road (OpenStreetMap routing; only a ~100 m-rounded position is sent to it, with a straight-line x 1.3 fallback). Only the rounded distance and the city name
   go with the RSVP
 - RSVP form -> `/api/rsvp` (distance included, rounded)
 - SEO: meta + Open Graph, Event structured data, auto sitemap.xml and robots.txt
