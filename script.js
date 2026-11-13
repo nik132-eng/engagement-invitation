@@ -220,18 +220,18 @@
       return parts.join(", ");
     }).catch(function () { return null; });
   }
-  /* Driving distance by road (OpenStreetMap routing). Only the position rounded to ~100 m is sent; if the
-     service is slow or offline we fall back to the straight line x 1.3, a typical road-winding factor. */
-  var ROAD_FACTOR = 1.3;
+  /* Driving distance by road, asked of our own /api/route (OpenStreetMap routing, position rounded to ~100 m).
+     If it is slow or offline we fall back to the straight line x 1.2, a typical highway winding factor. */
+  var ROAD_FACTOR = 1.2;
   function drivingKm(from) {
     var straight = haversine(from, venue) * ROAD_FACTOR;
     if (typeof fetch !== "function") return Promise.resolve(straight);
-    var r3 = function (n) { return n.toFixed(3); };
-    var url = "https://router.project-osrm.org/route/v1/driving/" + r3(from.lng) + "," + r3(from.lat) + ";" + venue.lng + "," + venue.lat + "?overview=false";
-    var ctl = window.AbortController ? new AbortController() : null, timer = ctl ? setTimeout(function () { ctl.abort(); }, 7000) : null;
-    return fetch(url, ctl ? { signal: ctl.signal } : {}).then(function (r) { return r.json(); }).then(function (d) {
-      return d && d.routes && d.routes[0] && d.routes[0].distance > 0 ? d.routes[0].distance / 1000 : straight;
-    }).catch(function () { return straight; }).then(function (km) { if (timer) clearTimeout(timer); return km; });
+    var ctl = window.AbortController ? new AbortController() : null, timer = ctl ? setTimeout(function () { ctl.abort(); }, 9000) : null;
+    return fetch("/api/route?lat=" + from.lat.toFixed(3) + "&lng=" + from.lng.toFixed(3), ctl ? { signal: ctl.signal } : {})
+      .then(function (r) { return r.json(); })
+      .then(function (d) { return d && d.ok && d.km > 0 ? d.km : straight; })
+      .catch(function () { return straight; })
+      .then(function (km) { if (timer) clearTimeout(timer); return km; });
   }
   function renderDistance() {
     if (!venue) return;
