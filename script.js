@@ -30,14 +30,14 @@
       distAway: "About {km} km away", distNear: "You're less than 1 km away!", distLoading: "Finding your distance…",
       distDenied: "Location is off. Tap to try again.",
       distFrom: "You are in {place}",
-      distNote: "Your exact location stays on your phone. Only the rounded distance and the nearest city name are shared if you RSVP.",
+      distNote: "Your exact location stays on your phone. Only the rounded distance and the nearest city name are shared if you reply.",
       fName: "Your name", fAttend: "Will you be attending?", fYes: "Yes, I'll be there!", fNo: "Sorry, I can't make it",
-      fGuests: "Total guests (including you)", fMsg: "Your message (optional)", fSend: "Send RSVP", fSending: "Sending…",
-      fNeedName: "Please enter your name.", fError: "Couldn't send your RSVP. Please try again.", fErrorWa: "Or send it on WhatsApp",
-      thanksName: "Thank you, {name}!", thanksYes: "We've noted your RSVP. See you on 12 December!", thanksNo: "Thanks for letting us know. You'll be missed.",
+      fGuests: "Total guests (including you)", fMsg: "Your message (optional)", fSend: "Send", fSending: "Sending…",
+      fNeedName: "Please enter your name.", fError: "Couldn't send your reply. Please try again.", fErrorWa: "Or send it on WhatsApp",
+      thanksName: "Thank you, {name}!", thanksYes: "We've noted your reply. See you on 12 December!", thanksNo: "Thanks for letting us know. You'll be missed.",
       fEdit: "Change my reply",
       closing: "We can't wait to celebrate with you!", signoff: "Nikunj & Ayushi",
-      footer: "Made with love for Nikunj & Ayushi", dockRsvp: "RSVP",
+      footer: "Made with love for Nikunj & Ayushi", dockRsvp: "Reply",
       rsvpTitle: "Waiting for your response",
       scratchHint: "Scratch to reveal the date", scratchAria: "Scratch to reveal the date and time. Press Enter to reveal them."
     },
@@ -62,14 +62,14 @@
       distAway: "આશરે {km} કિમી દૂર", distNear: "તમે 1 કિમીથી પણ ઓછા દૂર છો!", distLoading: "અંતર શોધી રહ્યા છીએ…",
       distDenied: "લોકેશન બંધ છે. ફરી પ્રયત્ન કરવા ટેપ કરો.",
       distFrom: "તમે {place} માં છો",
-      distNote: "તમારું ચોક્કસ લોકેશન તમારા ફોનમાં જ રહે છે. RSVP કરો તો ફક્ત આશરે અંતર અને નજીકના શહેરનું નામ શેર થાય છે.",
+      distNote: "તમારું ચોક્કસ લોકેશન તમારા ફોનમાં જ રહે છે. જવાબ આપો તો ફક્ત આશરે અંતર અને નજીકના શહેરનું નામ શેર થાય છે.",
       fName: "આપનું નામ", fAttend: "શું આપ હાજર રહેશો?", fYes: "હા, હું આવીશ!", fNo: "માફ કરશો, હું આવી શકીશ નહીં",
-      fGuests: "કુલ મહેમાન (આપ સહિત)", fMsg: "આપનો સંદેશ (વૈકલ્પિક)", fSend: "RSVP મોકલો", fSending: "મોકલી રહ્યા છીએ…",
-      fNeedName: "કૃપા કરીને આપનું નામ લખો.", fError: "RSVP મોકલી શકાયું નહીં. ફરી પ્રયત્ન કરો.", fErrorWa: "અથવા WhatsApp પર મોકલો",
+      fGuests: "કુલ મહેમાન (આપ સહિત)", fMsg: "આપનો સંદેશ (વૈકલ્પિક)", fSend: "મોકલો", fSending: "મોકલી રહ્યા છીએ…",
+      fNeedName: "કૃપા કરીને આપનું નામ લખો.", fError: "જવાબ મોકલી શકાયું નહીં. ફરી પ્રયત્ન કરો.", fErrorWa: "અથવા WhatsApp પર મોકલો",
       thanksName: "આભાર, {name}!", thanksYes: "આપની હાજરીની નોંધ થઈ ગઈ છે. 12 ડિસેમ્બરે મળીએ!", thanksNo: "જાણ કરવા બદલ આભાર. આપની ખોટ સાલશે.",
       fEdit: "જવાબ બદલો",
       closing: "આપની સાથે ઉજવણી કરવા અમે આતુર છીએ!", signoff: "નિકુંજ અને આયુષી",
-      footer: "નિકુંજ અને આયુષી માટે પ્રેમથી બનાવેલ", dockRsvp: "RSVP",
+      footer: "નિકુંજ અને આયુષી માટે પ્રેમથી બનાવેલ", dockRsvp: "જવાબ આપો",
       rsvpTitle: "આપના જવાબની રાહ જોઈ રહ્યા છીએ",
       scratchHint: "તારીખ જોવા સ્ક્રેચ કરો", scratchAria: "તારીખ અને સમય જોવા સ્ક્રેચ કરો. સીધું જોવા Enter દબાવો."
     }
@@ -353,7 +353,7 @@
     if (C.whatsapp) {
       var a = document.createElement("a");
       a.textContent = " " + t("fErrorWa");
-      a.href = "https://wa.me/" + String(C.whatsapp).replace(/\D/g, "") + "?text=" + encodeURIComponent("Engagement RSVP: " + form.name.value.trim() + " - " + (form.attend.value === "yes" ? "Yes" : "No"));
+      a.href = "https://wa.me/" + String(C.whatsapp).replace(/\D/g, "") + "?text=" + encodeURIComponent("Engagement reply: " + form.name.value.trim() + " - " + (form.attend.value === "yes" ? "Yes" : "No"));
       a.target = "_blank"; a.rel = "noopener"; err.appendChild(a);
     }
     err.hidden = false;
