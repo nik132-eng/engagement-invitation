@@ -27,10 +27,10 @@
       programTitle: "Program", stepChandla: "Chandla Vidhi", stepGoldhana: "Goldhana", stepRing: "Ring Ceremony", stepGreetings: "Greetings & Wishes", stepDinner: "Dinner",
       venueTitle: "Venue", directions: "Get Directions",
       distTitle: "How far are you?", distBtn: "Show my distance",
-      distAway: "About {km} km away", distNear: "You're less than 1 km away!", distLoading: "Finding your distance…",
+      distAway: "About {km} km away by road", distNear: "You're less than 1 km away!", distLoading: "Finding your distance…",
       distDenied: "Location is off. Tap to try again.",
       distFrom: "You are in {place}",
-      distNote: "Your exact location stays on your phone. Only the rounded distance and the nearest city name are shared if you reply.",
+      distNote: "Your exact location stays on your phone. Only an approximate position (about 100 m) is used to work out the driving distance, and only the rounded distance and nearest city name are shared if you reply.",
       fName: "Your name", fAttend: "Will you be attending?", fYes: "Yes, I'll be there!", fNo: "Sorry, I can't make it",
       fGuests: "Total guests (including you)", fMsg: "Your message (optional)", fSend: "Send", fSending: "Sending…",
       fNeedName: "Please enter your name.", fError: "Couldn't send your reply. Please try again.", fErrorWa: "Or send it on WhatsApp",
@@ -59,10 +59,10 @@
       programTitle: "કાર્યક્રમ", stepChandla: "ચાંદલા વિધિ", stepGoldhana: "ગોળ ધાણા", stepRing: "રિંગ સેરેમની", stepGreetings: "અભિનંદન અને શુભેચ્છાઓ", stepDinner: "ભોજન",
       venueTitle: "સ્થળ", directions: "દિશા મેળવો",
       distTitle: "તમે કેટલા દૂર છો?", distBtn: "મારું અંતર બતાવો",
-      distAway: "આશરે {km} કિમી દૂર", distNear: "તમે 1 કિમીથી પણ ઓછા દૂર છો!", distLoading: "અંતર શોધી રહ્યા છીએ…",
+      distAway: "રસ્તે આશરે {km} કિમી દૂર", distNear: "તમે 1 કિમીથી પણ ઓછા દૂર છો!", distLoading: "અંતર શોધી રહ્યા છીએ…",
       distDenied: "લોકેશન બંધ છે. ફરી પ્રયત્ન કરવા ટેપ કરો.",
       distFrom: "તમે {place} માં છો",
-      distNote: "તમારું ચોક્કસ લોકેશન તમારા ફોનમાં જ રહે છે. જવાબ આપો તો ફક્ત આશરે અંતર અને નજીકના શહેરનું નામ શેર થાય છે.",
+      distNote: "તમારું ચોક્કસ લોકેશન તમારા ફોનમાં જ રહે છે. રસ્તાનું અંતર શોધવા ફક્ત આશરે સ્થાન (લગભગ 100 મીટર) વપરાય છે, અને જવાબ આપો તો ફક્ત આશરે અંતર અને નજીકના શહેરનું નામ શેર થાય છે.",
       fName: "આપનું નામ", fAttend: "શું આપ હાજર રહેશો?", fYes: "હા, હું આવીશ!", fNo: "માફ કરશો, હું આવી શકીશ નહીં",
       fGuests: "કુલ મહેમાન (આપ સહિત)", fMsg: "આપનો સંદેશ (વૈકલ્પિક)", fSend: "મોકલો", fSending: "મોકલી રહ્યા છીએ…",
       fNeedName: "કૃપા કરીને આપનું નામ લખો.", fError: "જવાબ મોકલી શકાયું નહીં. ફરી પ્રયત્ન કરો.", fErrorWa: "અથવા WhatsApp પર મોકલો",
@@ -220,6 +220,19 @@
       return parts.join(", ");
     }).catch(function () { return null; });
   }
+  /* Driving distance by road (OpenStreetMap routing). Only the position rounded to ~100 m is sent; if the
+     service is slow or offline we fall back to the straight line x 1.3, a typical road-winding factor. */
+  var ROAD_FACTOR = 1.3;
+  function drivingKm(from) {
+    var straight = haversine(from, venue) * ROAD_FACTOR;
+    if (typeof fetch !== "function") return Promise.resolve(straight);
+    var r3 = function (n) { return n.toFixed(3); };
+    var url = "https://router.project-osrm.org/route/v1/driving/" + r3(from.lng) + "," + r3(from.lat) + ";" + venue.lng + "," + venue.lat + "?overview=false";
+    var ctl = window.AbortController ? new AbortController() : null, timer = ctl ? setTimeout(function () { ctl.abort(); }, 7000) : null;
+    return fetch(url, ctl ? { signal: ctl.signal } : {}).then(function (r) { return r.json(); }).then(function (d) {
+      return d && d.routes && d.routes[0] && d.routes[0].distance > 0 ? d.routes[0].distance / 1000 : straight;
+    }).catch(function () { return straight; }).then(function (km) { if (timer) clearTimeout(timer); return km; });
+  }
   function renderDistance() {
     if (!venue) return;
     var out = $("#distOut"), btn = $("#distBtn");
@@ -235,9 +248,12 @@
     if (!venue || !navigator.geolocation) return;
     asked = true; distState = "loading"; renderDistance();
     navigator.geolocation.getCurrentPosition(function (pos) {
-      distanceKm = Math.round(haversine({ lat: pos.coords.latitude, lng: pos.coords.longitude }, venue) * 10) / 10;
-      distState = "ok"; renderDistance(); track("distance_shown");
-      nearestPlace(pos.coords.latitude, pos.coords.longitude).then(function (p) { place = p; renderDistance(); });
+      var lat = pos.coords.latitude, lng = pos.coords.longitude;
+      drivingKm({ lat: lat, lng: lng }).then(function (km) {
+        distanceKm = Math.round(km * 10) / 10;
+        distState = "ok"; renderDistance(); track("distance_shown");
+      });
+      nearestPlace(lat, lng).then(function (p) { place = p; renderDistance(); });
     }, function () { distState = "denied"; renderDistance(); }, { timeout: 12000, maximumAge: 600000 });
   }
   if (venue && navigator.geolocation) {
